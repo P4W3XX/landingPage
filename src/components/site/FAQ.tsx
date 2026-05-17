@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 
-const ITEMS = [
+export const FAQ_ITEMS = [
   {
     q: "Jak długo trwa stworzenie strony?",
     a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 2–4 tygodnie. Rozbudowane strony korporacyjne 6–10 tygodni. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
@@ -39,7 +39,7 @@ export function FAQ() {
         <div className="mt-12 grid gap-0 md:grid-cols-12">
           <div className="md:col-span-10 md:col-start-3">
             <ul className="border-t border-border">
-              {ITEMS.map((item, i) => {
+              {FAQ_ITEMS.map((item, i) => {
                 const isOpen = open === i;
                 return (
                   <li key={item.q} className="border-b border-border">

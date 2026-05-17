@@ -1,0 +1,9 @@
+# Studio Kresa
+
+> Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe na zamówienie.
+
+Studio Kresa świadczy usługi z zakresu projektowania UI/UX, kodowania stron i aplikacji webowych oraz opieki technicznej po wdrożeniu. Pierwszy miesiąc opieki po wdrożeniu jest gratis, później stały pakiet 200 zł/miesiąc.
+
+## Pages
+
+- [Strona główna](/): Usługi, portfolio, opieka po wdrożeniu, FAQ i kontakt.
