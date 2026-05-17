@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { href: "#uslugi", label: "Usługi" },
@@ -43,6 +44,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <a href="#kontakt" className="btn-primary hidden md:inline-flex">Darmowa wycena</a>
           <button
             type="button"
