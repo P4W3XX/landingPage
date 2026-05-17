@@ -39,7 +39,7 @@ export function FAQ() {
         <div className="mt-12 grid gap-0 md:grid-cols-12">
           <div className="md:col-span-10 md:col-start-3">
             <ul className="border-t border-border">
-              {ITEMS.map((item, i) => {
+              {FAQ_ITEMS.map((item, i) => {
                 const isOpen = open === i;
                 return (
                   <li key={item.q} className="border-b border-border">
