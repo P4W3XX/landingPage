@@ -47,6 +47,8 @@ export function Contact() {
     toast.success("Dziękujemy! Odezwiemy się w ciągu kilku godzin.");
     (e.target as HTMLFormElement).reset();
     setScope([]);
+    setPostLaunch([]);
+    setCare("free");
   };
 
   return (
