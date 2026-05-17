@@ -25,6 +25,9 @@ export function Hero() {
             <a href="#portfolio" className="btn-ghost">
               Zobacz nasze realizacje <ArrowRight size={16} />
             </a>
+            <a href="#opieka" className="btn-ghost">
+              Opieka po wdrożeniu <ArrowRight size={16} />
+            </a>
           </div>
         </div>
 
