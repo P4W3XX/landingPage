@@ -23,6 +23,7 @@ function Index() {
         <Hero />
         <Services />
         <WhyUs />
+        <Care />
         <Portfolio />
         <Testimonials />
         <FAQ />
