@@ -9,7 +9,7 @@ const FREE_INCLUDES = [
 ];
 
 const PAID_INCLUDES = [
-  "Wszystkie edycje treści, grafik i sekcji po Twojej stronie? Nie — robimy je za Ciebie",
+  "Edycje treści, grafik i nowych sekcji — robimy je za Ciebie",
   "Aktualizacje stacku, bibliotek i zależności bezpieczeństwa",
   "Automatyczne backupy + plan przywrócenia",
   "Monitoring uptime 24/7 i alerty wydajnościowe",
