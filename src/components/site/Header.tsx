@@ -44,6 +44,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <a href="#kontakt" className="btn-primary hidden md:inline-flex">Darmowa wycena</a>
           <button
             type="button"
