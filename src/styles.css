@@ -67,6 +67,32 @@
   --ring: var(--ink);
 }
 
+.dark {
+  /* Brutalism Dark — swap ink/paper, soften copper */
+  --paper: oklch(0.16 0.008 80);
+  --ink: oklch(0.96 0.005 80);
+  --copper: oklch(0.7 0.13 50);
+  --copper-deep: oklch(0.78 0.12 50);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.2 0.008 80);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.2 0.008 80);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: oklch(0.22 0.008 80);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.22 0.008 80);
+  --muted-foreground: oklch(0.7 0.01 80);
+  --accent: var(--copper);
+  --accent-foreground: var(--paper);
+  --border: oklch(0.28 0.008 80);
+  --input: oklch(0.28 0.008 80);
+  --ring: var(--ink);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
