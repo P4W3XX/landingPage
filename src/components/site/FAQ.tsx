@@ -16,8 +16,12 @@ const ITEMS = [
     a: "Tak. Przeprowadzamy Cię przez wybór i konfigurację domeny oraz hostingu — możemy też wziąć te kwestie w pełni na siebie w ramach pakietu opieki.",
   },
   {
+    q: "Czy dostanę panel CMS do samodzielnej edycji?",
+    a: "Świadomie nie wdrażamy panelu CMS — dzięki temu strona jest szybsza, bezpieczniejsza i tańsza w utrzymaniu. Wszystkie edycje treści, grafik czy nowych sekcji po wdrożeniu robimy za Ciebie w ramach opieki technicznej, zwykle w ciągu 24–48h od zgłoszenia.",
+  },
+  {
     q: "Co dzieje się po wdrożeniu projektu?",
-    a: "Pierwszy miesiąc po oddaniu projektu to bezpłatna opieka — poprawiamy drobne błędy, doradzamy przy pierwszych zmianach i pilnujemy stabilności. Po tym okresie możesz wykupić stałą opiekę techniczną za 200 zł miesięcznie: monitoring, aktualizacje, backupy i priorytetową reakcję na incydenty.",
+    a: "Pierwszy miesiąc po oddaniu projektu to bezpłatna opieka — poprawiamy drobne błędy, doradzamy przy pierwszych zmianach i pilnujemy stabilności. Po tym okresie możesz wykupić stałą opiekę techniczną za 200 zł miesięcznie: edycje treści, monitoring, aktualizacje, backupy i priorytetową reakcję na incydenty.",
   },
 ];
 
