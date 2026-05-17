@@ -29,7 +29,6 @@ export function Care() {
         />
 
         <div className="mt-14 grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-2">
-          {/* Free month */}
           <article className="flex flex-col bg-background p-8 md:p-10">
             <div className="flex items-center justify-between">
               <span className="label">P/01 — Start</span>
