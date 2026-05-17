@@ -30,14 +30,21 @@ export function Header() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between md:h-20">
-        <a href="#top" className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight">
+        <a
+          href="#top"
+          className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight"
+        >
           <span className="inline-block h-2.5 w-2.5 bg-foreground" aria-hidden />
           Studio Kresa
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="link-underline text-sm text-foreground/80 hover:text-foreground">
+            <a
+              key={n.href}
+              href={n.href}
+              className="link-underline text-sm text-foreground/80 hover:text-foreground"
+            >
               {n.label}
             </a>
           ))}
@@ -45,7 +52,9 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <a href="#kontakt" className="btn-primary hidden md:inline-flex">Darmowa wycena</a>
+          <a href="#kontakt" className="btn-primary hidden md:inline-flex">
+            Darmowa wycena
+          </a>
           <button
             type="button"
             className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-border"
@@ -71,7 +80,11 @@ export function Header() {
                 {n.label}
               </a>
             ))}
-            <a href="#kontakt" onClick={() => setOpen(false)} className="btn-primary mt-4 justify-center">
+            <a
+              href="#kontakt"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-4 justify-center"
+            >
               Darmowa wycena
             </a>
           </nav>

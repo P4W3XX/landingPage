@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -110,7 +110,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -122,8 +125,12 @@
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .font-mono { font-family: var(--font-mono); }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
 
   .container-x {
     width: 100%;
@@ -133,7 +140,9 @@
   }
 
   @media (min-width: 768px) {
-    .container-x { padding-inline: 2.5rem; }
+    .container-x {
+      padding-inline: 2.5rem;
+    }
   }
 
   .label {
@@ -144,20 +153,33 @@
     color: var(--muted-foreground);
   }
 
-  .hairline { border-top: 1px solid var(--border); }
-  .hairline-b { border-bottom: 1px solid var(--border); }
+  .hairline {
+    border-top: 1px solid var(--border);
+  }
+  .hairline-b {
+    border-bottom: 1px solid var(--border);
+  }
 
   .reveal {
     animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   @keyframes revealUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .card-hover {
-    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      background-color 0.25s ease;
   }
   .card-hover:hover {
     transform: translateY(-2px);
@@ -176,9 +198,15 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     border: 1px solid var(--ink);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
   }
-  .btn-primary:hover { transform: translate(-1px,-1px); background: var(--copper-deep); border-color: var(--copper-deep); }
+  .btn-primary:hover {
+    transform: translate(-1px, -1px);
+    background: var(--copper-deep);
+    border-color: var(--copper-deep);
+  }
 
   .btn-ghost {
     display: inline-flex;
@@ -192,9 +220,16 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     border: 1px solid var(--ink);
-    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
-  .btn-ghost:hover { transform: translate(-1px,-1px); background: var(--ink); color: var(--paper); }
+  .btn-ghost:hover {
+    transform: translate(-1px, -1px);
+    background: var(--ink);
+    color: var(--paper);
+  }
 
   .link-underline {
     position: relative;
@@ -203,12 +238,17 @@
   .link-underline::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -2px;
-    width: 100%; height: 1px;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.35s ease;
   }
-  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }

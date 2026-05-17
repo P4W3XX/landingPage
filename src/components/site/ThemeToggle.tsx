@@ -10,8 +10,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       | "dark"
       | null;
     const initial: "light" | "dark" =
-      stored ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     setTheme(initial);
   }, []);
 
@@ -21,7 +20,9 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     root.classList.toggle("dark", next === "dark");
     try {
       localStorage.setItem("theme", next);
-    } catch {}
+    } catch (e) {
+      // Ignore (e.g. in private mode)
+    }
   };
 
   return (

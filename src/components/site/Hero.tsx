@@ -7,7 +7,7 @@ export function Hero() {
         <div className="md:col-span-8 reveal">
           <div className="label mb-8 flex items-center gap-3">
             <span className="inline-block h-px w-10 bg-foreground/50" />
-            Studio projektowo-programistyczne · est. 2021
+            Studio projektowo-programistyczne · est. 2026
           </div>
           <h1 className="font-display text-4xl font-semibold leading-[1.04] tracking-tight md:text-6xl lg:text-[5.25rem]">
             Tworzymy nowoczesne strony i aplikacje webowe
@@ -15,8 +15,8 @@ export function Hero() {
             Twojego biznesu.
           </h1>
           <p className="mt-8 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Od prostych wizytówek po zaawansowane systemy. Szybka realizacja,
-            najnowsze technologie i wsparcie, na którym możesz polegać.
+            Od prostych wizytówek po zaawansowane systemy. Szybka realizacja, najnowsze technologie
+            i wsparcie, na którym możesz polegać.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a href="#kontakt" className="btn-primary">
@@ -34,7 +34,7 @@ export function Hero() {
         <aside className="md:col-span-4 reveal" style={{ animationDelay: "120ms" }}>
           <div className="grid grid-cols-2 gap-px bg-border border border-border">
             {[
-              { k: "120+", v: "Zrealizowanych projektów" },
+              { k: "20+", v: "Zrealizowanych projektów" },
               { k: "98/100", v: "Średni PageSpeed" },
               { k: "< 2h", v: "Średni czas odpowiedzi" },
               { k: "5 lat", v: "Doświadczenia zespołu" },
@@ -45,8 +45,8 @@ export function Hero() {
               </div>
             ))}
           </div>
-          <p className="label mt-6">
-            [ React ] [ Next.js ] [ Tailwind ] [ TypeScript ] [ Node ]
+          <p className="label mt-6 leading-relaxed">
+            [ React ] [ Next.js ] [ Tailwind ] <br />[ TypeScript ] [ Node ]
           </p>
         </aside>
       </div>

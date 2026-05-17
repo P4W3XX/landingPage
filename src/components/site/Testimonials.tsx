@@ -4,18 +4,8 @@ import { SectionHeader } from "./SectionHeader";
 const QUOTES = [
   {
     text: "Najbardziej zaskoczyło mnie tempo. To, co u poprzedniej agencji ciągnęło się miesiącami, tutaj było gotowe w trzy tygodnie — i wyglądało lepiej.",
-    name: "Magdalena Lewandowska",
-    role: "CMO, Northwind Capital",
-  },
-  {
-    text: "Strona została zaprojektowana od zera pod naszych klientów. Konwersja wzrosła o 41% w pierwszym kwartale po wdrożeniu.",
-    name: "Tomasz Wójcik",
-    role: "Założyciel, Atelier Ferro",
-  },
-  {
-    text: "Komunikacja w punkt, zero ściemy. Dokładnie wiedzieliśmy, na jakim etapie jest projekt i co dzieje się z każdą złotówką budżetu.",
-    name: "Anna Krawiec",
-    role: "Head of Ops, Plan B Logistyka",
+    name: "VirusekDevv",
+    role: "Założyciel, Studio MarketPlace",
   },
 ];
 
@@ -29,9 +19,12 @@ export function Testimonials() {
           title="To, co o nas mówią, znaczy więcej niż to, co sami napiszemy."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-px bg-border border border-border md:grid-cols-3">
+        <div className="mt-14 flex gap-px bg-border border border-border md:grid-cols-3">
           {QUOTES.map((q) => (
-            <figure key={q.name} className="card-hover flex flex-col justify-between bg-background p-8 md:p-10">
+            <figure
+              key={q.name}
+              className="card-hover flex-1! w-full hover:border-border! border-transparent flex flex-col border justify-between bg-background p-8 md:p-10"
+            >
               <div>
                 <div className="flex gap-0.5 text-[color:var(--copper-deep)]">
                   {Array.from({ length: 5 }).map((_, i) => (

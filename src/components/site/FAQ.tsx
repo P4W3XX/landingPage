@@ -5,11 +5,11 @@ import { SectionHeader } from "./SectionHeader";
 export const FAQ_ITEMS = [
   {
     q: "Jak długo trwa stworzenie strony?",
-    a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 2–4 tygodnie. Rozbudowane strony korporacyjne 6–10 tygodni. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
+    a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 5 - 7 dni. Rozbudowane strony korporacyjne 2-4 tygodni. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
   },
   {
     q: "Ile kosztuje wykonanie aplikacji webowej?",
-    a: "Koszt aplikacji zależy od zakresu funkcji, integracji i skali. Proste MVP zaczynają się od ok. 15 000 PLN, większe systemy od 40 000 PLN wzwyż. Po krótkiej rozmowie potrafimy podać konkretny widełkowy zakres.",
+    a: "Koszt aplikacji zależy od zakresu funkcji, integracji i skali. Proste MVP zaczynają się od ok. 10 000 PLN, większe systemy od 30 000 PLN wzwyż. Po krótkiej rozmowie potrafimy podać konkretny widełkowy zakres.",
   },
   {
     q: "Czy pomagacie w rejestracji domeny i hostingu?",

@@ -84,8 +84,8 @@ export function Contact() {
             Opowiedz nam o swoim projekcie.
           </h2>
           <p className="mt-6 max-w-md text-background/70">
-            Odpowiadamy w ciągu kilku godzin w dni robocze. Pierwsza rozmowa
-            jest niezobowiązująca — wychodzisz z niej z konkretami, nie z ofertą sprzedażową.
+            Odpowiadamy w ciągu kilku godzin w dni robocze. Pierwsza rozmowa jest niezobowiązująca —
+            wychodzisz z niej z konkretami, nie z ofertą sprzedażową.
           </p>
 
           <dl className="mt-12 space-y-6">
@@ -94,7 +94,9 @@ export function Contact() {
               <div>
                 <dt className="label text-background/60">E-mail</dt>
                 <dd className="mt-1 font-display text-lg">
-                  <a href="mailto:hello@studiokresa.pl" className="link-underline">hello@studiokresa.pl</a>
+                  <a href="mailto:pawelsarzynski51@gmail.com" className="link-underline">
+                    pawelsarzynski51@gmail.com
+                  </a>
                 </dd>
               </div>
             </div>
@@ -103,7 +105,9 @@ export function Contact() {
               <div>
                 <dt className="label text-background/60">Telefon</dt>
                 <dd className="mt-1 font-display text-lg">
-                  <a href="tel:+48500600700" className="link-underline">+48 500 600 700</a>
+                  <a href="tel:+48500600700" className="link-underline">
+                    +48 662 925 283
+                  </a>
                 </dd>
               </div>
             </div>
@@ -111,7 +115,7 @@ export function Contact() {
               <Clock size={18} className="mt-1 text-[color:var(--copper)]" />
               <div>
                 <dt className="label text-background/60">Godziny pracy</dt>
-                <dd className="mt-1 text-background/85">Pon — Pt · 09:00 — 18:00</dd>
+                <dd className="mt-1 text-background/85">Pon — Pt · 07:00 — 21:00</dd>
               </div>
             </div>
           </dl>
@@ -120,9 +124,12 @@ export function Contact() {
             <div className="label text-background/60">Social</div>
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
               {["LinkedIn", "Instagram", "Dribbble", "GitHub"].map((s) => (
-                <a key={s} href="#" className="link-underline inline-flex items-center gap-1">
-                  {s} <ArrowUpRight size={12} />
-                </a>
+                <div key={s} className="flex items-center gap-1">
+                  <a key={s} href="#" className="link-underline flex items-center gap-1">
+                    {s}
+                  </a>
+                  <ArrowUpRight size={12} />
+                </div>
               ))}
             </div>
           </div>
@@ -140,9 +147,13 @@ export function Contact() {
                 defaultValue=""
                 className="mt-2 w-full appearance-none border-b border-background/30 bg-transparent py-3 text-background outline-none focus:border-[color:var(--copper)]"
               >
-                <option value="" disabled className="bg-foreground">Wybierz przedział</option>
+                <option value="" disabled className="bg-foreground">
+                  Wybierz przedział
+                </option>
                 {BUDGETS.map((b) => (
-                  <option key={b} value={b} className="bg-foreground">{b}</option>
+                  <option key={b} value={b} className="bg-foreground">
+                    {b}
+                  </option>
                 ))}
               </select>
             </div>
@@ -195,7 +206,9 @@ export function Contact() {
                         : "border-background/30 hover:border-background"
                     }`}
                   >
-                    <span className={`font-display text-base ${active ? "text-[color:var(--copper)]" : "text-background"}`}>
+                    <span
+                      className={`font-display text-base ${active ? "text-[color:var(--copper)]" : "text-background"}`}
+                    >
                       {c.title}
                     </span>
                     <span className="mt-1 font-mono text-[10px] uppercase tracking-wider text-background/60">
@@ -265,9 +278,7 @@ export function Contact() {
                     {selectedCare?.priceNote}
                   </span>
                 </div>
-                <p className="mt-2 text-xs text-background/60">
-                  {selectedCare?.starts}
-                </p>
+                <p className="mt-2 text-xs text-background/60">{selectedCare?.starts}</p>
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
@@ -300,8 +311,8 @@ export function Contact() {
               {submitting ? "Wysyłanie…" : "Wyślij zapytanie"} <ArrowUpRight size={14} />
             </button>
             <p className="max-w-xs text-xs text-background/55">
-              Wysyłając formularz akceptujesz naszą politykę prywatności. Twoje dane
-              wykorzystamy wyłącznie do kontaktu w sprawie projektu.
+              Wysyłając formularz akceptujesz naszą politykę prywatności. Twoje dane wykorzystamy
+              wyłącznie do kontaktu w sprawie projektu.
             </p>
           </div>
         </form>
@@ -310,8 +321,12 @@ export function Contact() {
       <div className="container-x flex flex-col gap-4 border-t border-background/15 py-8 font-mono text-[11px] uppercase tracking-wider text-background/55 sm:flex-row sm:items-center sm:justify-between">
         <div>© {new Date().getFullYear()} Studio Kresa — Wszystkie prawa zastrzeżone</div>
         <div className="flex gap-6">
-          <a href="#" className="link-underline">Polityka prywatności</a>
-          <a href="#" className="link-underline">Regulamin</a>
+          <a href="#" className="link-underline">
+            Polityka prywatności
+          </a>
+          <a href="#" className="link-underline">
+            Regulamin
+          </a>
         </div>
       </div>
     </section>
@@ -319,7 +334,11 @@ export function Contact() {
 }
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-background/60">{children}</span>;
+  return (
+    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-background/60">
+      {children}
+    </span>
+  );
 }
 
 function Field({
@@ -337,7 +356,10 @@ function Field({
 }) {
   return (
     <label className="block">
-      <Label>{label}{required && " *"}</Label>
+      <Label>
+        {label}
+        {required && " *"}
+      </Label>
       <input
         name={name}
         type={type}

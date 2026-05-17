@@ -47,8 +47,8 @@ export function Care() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              Okres docierania projektu na produkcji. Reagujemy szybko, doradzamy
-              i pilnujemy, żeby start był spokojny.
+              Okres docierania projektu na produkcji. Reagujemy szybko, doradzamy i pilnujemy, żeby
+              start był spokojny.
             </p>
             <ul className="mt-8 space-y-3">
               {FREE_INCLUDES.map((b) => (
@@ -80,8 +80,8 @@ export function Care() {
               </span>
             </div>
             <p className="mt-4 max-w-md text-sm text-background/70">
-              Po pierwszym miesiącu. Bez umowy na czas określony — możesz
-              zrezygnować w dowolnym momencie.
+              Po pierwszym miesiącu. Bez umowy na czas określony — możesz zrezygnować w dowolnym
+              momencie.
             </p>
             <ul className="mt-8 space-y-3">
               {PAID_INCLUDES.map((b) => (
@@ -128,9 +128,7 @@ export function Care() {
               ].map(([label, free, paid], i) => (
                 <tr key={i} className="border-b border-border last:border-b-0">
                   <td className="px-6 py-4">{label as string}</td>
-                  <td className="px-6 py-4 text-muted-foreground">
-                    {renderCell(free)}
-                  </td>
+                  <td className="px-6 py-4 text-muted-foreground">{renderCell(free)}</td>
                   <td className="px-6 py-4">{renderCell(paid)}</td>
                 </tr>
               ))}
@@ -139,9 +137,9 @@ export function Care() {
         </div>
 
         <p className="mt-6 max-w-3xl text-xs text-muted-foreground">
-          Świadomie nie wdrażamy panelu CMS — dzięki temu strona jest szybsza,
-          bezpieczniejsza i tańsza w utrzymaniu. Wszystkie zmiany po wdrożeniu
-          robimy za Ciebie w ramach opieki, zwykle w ciągu 24–48h.
+          Świadomie nie wdrażamy panelu CMS — dzięki temu strona jest szybsza, bezpieczniejsza i
+          tańsza w utrzymaniu. Wszystkie zmiany po wdrożeniu robimy za Ciebie w ramach opieki,
+          zwykle w ciągu 24–48h.
         </p>
       </div>
     </section>
