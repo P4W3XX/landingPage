@@ -16,12 +16,8 @@ const ITEMS = [
     a: "Tak. Przeprowadzamy Cię przez wybór i konfigurację domeny oraz hostingu — możemy też wziąć te kwestie w pełni na siebie w ramach pakietu opieki.",
   },
   {
-    q: "Czy dostanę dostęp do panelu CMS, aby samemu edytować treści?",
-    a: "Tak. Standardowo wdrażamy lekki, intuicyjny panel CMS (np. Sanity lub Strapi), w którym samodzielnie edytujesz treści, zdjęcia i sekcje. Bez znajomości kodu.",
-  },
-  {
     q: "Co dzieje się po wdrożeniu projektu?",
-    a: "Zostajemy z Tobą tak długo, jak tego potrzebujesz — monitorujemy wydajność, aktualizujemy stack, dodajemy nowe funkcje i reagujemy na incydenty zgodnie z umówionym SLA.",
+    a: "Pierwszy miesiąc po oddaniu projektu to bezpłatna opieka — poprawiamy drobne błędy, doradzamy przy pierwszych zmianach i pilnujemy stabilności. Po tym okresie możesz wykupić stałą opiekę techniczną za 200 zł miesięcznie: monitoring, aktualizacje, backupy i priorytetową reakcję na incydenty.",
   },
 ];
 
