@@ -253,9 +253,20 @@ export function Contact() {
                   Wybrana opieka
                 </dt>
                 <dd className="mt-1 text-sm text-background">
-                  {CARE.find((c) => c.id === care)?.title}
-                  <span className="text-background/55"> — {CARE.find((c) => c.id === care)?.desc}</span>
+                  {selectedCare?.title}
+                  <span className="text-background/55"> — {selectedCare?.desc}</span>
                 </dd>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="font-display text-2xl font-semibold text-[color:var(--copper)]">
+                    {selectedCare?.price}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-background/55">
+                    {selectedCare?.priceNote}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-background/60">
+                  {selectedCare?.starts}
+                </p>
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
