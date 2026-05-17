@@ -150,6 +150,66 @@ export function Contact() {
           </div>
 
           <div className="mt-10">
+            <div className="flex items-baseline justify-between gap-4">
+              <Label>Opieka po wdrożeniu</Label>
+              <a
+                href="#opieka"
+                className="font-mono text-[11px] uppercase tracking-wider text-[color:var(--copper)] link-underline"
+              >
+                Zobacz szczegóły opieki →
+              </a>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {CARE.map((c) => {
+                const active = care === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => setCare(c.id)}
+                    className={`flex flex-col items-start border p-4 text-left transition-colors ${
+                      active
+                        ? "border-[color:var(--copper)] bg-[color:var(--copper)]/10"
+                        : "border-background/30 hover:border-background"
+                    }`}
+                  >
+                    <span className={`font-display text-base ${active ? "text-[color:var(--copper)]" : "text-background"}`}>
+                      {c.title}
+                    </span>
+                    <span className="mt-1 font-mono text-[10px] uppercase tracking-wider text-background/60">
+                      {c.desc}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <input type="hidden" name="care" value={care} />
+          </div>
+
+          <div className="mt-10">
+            <Label>Czego mogą dotyczyć zmiany po wdrożeniu?</Label>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {POST_LAUNCH.map((s) => {
+                const active = postLaunch.includes(s);
+                return (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => togglePL(s)}
+                    className={`border px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors ${
+                      active
+                        ? "border-[color:var(--copper)] bg-[color:var(--copper)] text-foreground"
+                        : "border-background/30 text-background/85 hover:border-background"
+                    }`}
+                  >
+                    {s}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-10">
             <Label>Krótki opis projektu</Label>
             <textarea
               name="message"
