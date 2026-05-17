@@ -4,13 +4,29 @@ import { toast } from "sonner";
 
 const SCOPE = ["Strona WWW", "E-commerce", "Aplikacja", "Inne"];
 const BUDGETS = ["< 5 000 PLN", "5 000 – 10 000 PLN", "10 000 – 25 000 PLN", "> 25 000 PLN"];
+const CARE = [
+  { id: "free", title: "1 miesiąc gratis", desc: "Standard po wdrożeniu" },
+  { id: "paid", title: "200 zł / mies.", desc: "Stała opieka techniczna" },
+  { id: "later", title: "Zdecyduję później", desc: "Porozmawiajmy o tym" },
+];
+const POST_LAUNCH = [
+  "Edycje treści i grafik",
+  "Nowe sekcje / podstrony",
+  "Integracje (płatności, API, CRM)",
+  "Optymalizacja SEO / wydajność",
+  "Nie wiem jeszcze",
+];
 
 export function Contact() {
   const [scope, setScope] = useState<string[]>([]);
+  const [postLaunch, setPostLaunch] = useState<string[]>([]);
+  const [care, setCare] = useState<string>("free");
   const [submitting, setSubmitting] = useState(false);
 
   const toggle = (v: string) =>
     setScope((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const togglePL = (v: string) =>
+    setPostLaunch((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
