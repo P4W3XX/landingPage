@@ -42,6 +42,7 @@ export function Contact() {
   const [scope, setScope] = useState<string[]>([]);
   const [postLaunch, setPostLaunch] = useState<string[]>([]);
   const [care, setCare] = useState<string>("free");
+  const selectedCare = CARE.find((c) => c.id === care);
   const [submitting, setSubmitting] = useState(false);
 
   const toggle = (v: string) =>
