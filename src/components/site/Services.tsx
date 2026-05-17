@@ -22,9 +22,9 @@ const SERVICES = [
   },
   {
     no: "S/04",
-    title: "Audyty i opieka",
-    desc: "Audyty UX, wydajności i SEO oraz stała opieka techniczna z gwarantowanym SLA.",
-    bullets: ["Audyt UX / SEO", "Performance & Core Web Vitals", "Stała opieka i hosting"],
+    title: "Opieka techniczna",
+    desc: "Pierwszy miesiąc po wdrożeniu gratis — poprawki, konsultacje i monitoring. Potem stała opieka za 200 zł miesięcznie.",
+    bullets: ["1 miesiąc bezpłatnej opieki", "Monitoring i aktualizacje", "Backup + priorytetowa reakcja"],
   },
 ];
 
