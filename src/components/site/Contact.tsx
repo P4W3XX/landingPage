@@ -5,9 +5,30 @@ import { toast } from "sonner";
 const SCOPE = ["Strona WWW", "E-commerce", "Aplikacja", "Inne"];
 const BUDGETS = ["< 5 000 PLN", "5 000 – 10 000 PLN", "10 000 – 25 000 PLN", "> 25 000 PLN"];
 const CARE = [
-  { id: "free", title: "1 miesiąc gratis", desc: "Standard po wdrożeniu" },
-  { id: "paid", title: "200 zł / mies.", desc: "Stała opieka techniczna" },
-  { id: "later", title: "Zdecyduję później", desc: "Porozmawiajmy o tym" },
+  {
+    id: "free",
+    title: "1 miesiąc gratis",
+    desc: "Standard po wdrożeniu",
+    price: "0 zł",
+    priceNote: "przez pierwsze 30 dni od oddania projektu",
+    starts: "Naliczanie od dnia wdrożenia",
+  },
+  {
+    id: "paid",
+    title: "200 zł / mies.",
+    desc: "Stała opieka techniczna",
+    price: "200 zł / mies.",
+    priceNote: "netto, bez umowy na czas określony",
+    starts: "Płatność rusza po 30 dniach bezpłatnej opieki",
+  },
+  {
+    id: "later",
+    title: "Zdecyduję później",
+    desc: "Porozmawiajmy o tym",
+    price: "Do ustalenia",
+    priceNote: "doradzimy wariant przy pierwszej rozmowie",
+    starts: "Pierwszy miesiąc po wdrożeniu zawsze gratis",
+  },
 ];
 const POST_LAUNCH = [
   "Edycje treści i grafik",
@@ -21,6 +42,7 @@ export function Contact() {
   const [scope, setScope] = useState<string[]>([]);
   const [postLaunch, setPostLaunch] = useState<string[]>([]);
   const [care, setCare] = useState<string>("free");
+  const selectedCare = CARE.find((c) => c.id === care);
   const [submitting, setSubmitting] = useState(false);
 
   const toggle = (v: string) =>
@@ -232,9 +254,20 @@ export function Contact() {
                   Wybrana opieka
                 </dt>
                 <dd className="mt-1 text-sm text-background">
-                  {CARE.find((c) => c.id === care)?.title}
-                  <span className="text-background/55"> — {CARE.find((c) => c.id === care)?.desc}</span>
+                  {selectedCare?.title}
+                  <span className="text-background/55"> — {selectedCare?.desc}</span>
                 </dd>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="font-display text-2xl font-semibold text-[color:var(--copper)]">
+                    {selectedCare?.price}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-background/55">
+                    {selectedCare?.priceNote}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-background/60">
+                  {selectedCare?.starts}
+                </p>
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
