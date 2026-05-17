@@ -5,6 +5,7 @@ let handler: any = null;
 async function loadHandler() {
   if (!handler) {
     try {
+      // @ts-ignore - The file is strictly generated during the build step
       const mod = await import("../dist/server/index.js");
       handler = mod.default;
     } catch (e) {
