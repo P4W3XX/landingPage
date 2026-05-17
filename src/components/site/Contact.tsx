@@ -222,6 +222,42 @@ export function Contact() {
             />
           </div>
 
+          <div className="mt-10 border border-background/20 p-5">
+            <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-background/60">
+              Podsumowanie przed wysłaniem
+            </div>
+            <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
+                  Wybrana opieka
+                </dt>
+                <dd className="mt-1 text-sm text-background">
+                  {CARE.find((c) => c.id === care)?.title}
+                  <span className="text-background/55"> — {CARE.find((c) => c.id === care)?.desc}</span>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
+                  Zmiany po wdrożeniu
+                </dt>
+                <dd className="mt-1 flex flex-wrap gap-1.5">
+                  {postLaunch.length === 0 ? (
+                    <span className="text-sm text-background/55">Nie wybrano — porozmawiamy</span>
+                  ) : (
+                    postLaunch.map((p) => (
+                      <span
+                        key={p}
+                        className="border border-[color:var(--copper)]/50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[color:var(--copper)]"
+                      >
+                        {p}
+                      </span>
+                    ))
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
           <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="submit"
