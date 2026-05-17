@@ -4,8 +4,8 @@
   "outputDirectory": "dist/client",
   "rewrites": [
     {
-      "source": "/:path*",
-      "destination": "/api"
+      "source": "/(.*)",
+      "destination": "/api/index"
     }
   ]
 }
