@@ -1,0 +1,69 @@
+import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
+
+const ITEMS = [
+  {
+    q: "Jak długo trwa stworzenie strony?",
+    a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 2–4 tygodnie. Rozbudowane strony korporacyjne 6–10 tygodni. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
+  },
+  {
+    q: "Ile kosztuje wykonanie aplikacji webowej?",
+    a: "Koszt aplikacji zależy od zakresu funkcji, integracji i skali. Proste MVP zaczynają się od ok. 15 000 PLN, większe systemy od 40 000 PLN wzwyż. Po krótkiej rozmowie potrafimy podać konkretny widełkowy zakres.",
+  },
+  {
+    q: "Czy pomagacie w rejestracji domeny i hostingu?",
+    a: "Tak. Przeprowadzamy Cię przez wybór i konfigurację domeny oraz hostingu — możemy też wziąć te kwestie w pełni na siebie w ramach pakietu opieki.",
+  },
+  {
+    q: "Czy dostanę dostęp do panelu CMS, aby samemu edytować treści?",
+    a: "Tak. Standardowo wdrażamy lekki, intuicyjny panel CMS (np. Sanity lub Strapi), w którym samodzielnie edytujesz treści, zdjęcia i sekcje. Bez znajomości kodu.",
+  },
+  {
+    q: "Co dzieje się po wdrożeniu projektu?",
+    a: "Zostajemy z Tobą tak długo, jak tego potrzebujesz — monitorujemy wydajność, aktualizujemy stack, dodajemy nowe funkcje i reagujemy na incydenty zgodnie z umówionym SLA.",
+  },
+];
+
+export function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section id="faq" className="hairline-b py-24 md:py-32">
+      <div className="container-x">
+        <SectionHeader
+          index="05"
+          eyebrow="FAQ"
+          title="Najczęstsze pytania, zanim do nas napiszesz."
+        />
+
+        <div className="mt-12 grid gap-0 md:grid-cols-12">
+          <div className="md:col-span-10 md:col-start-3">
+            <ul className="border-t border-border">
+              {ITEMS.map((item, i) => {
+                const isOpen = open === i;
+                return (
+                  <li key={item.q} className="border-b border-border">
+                    <button
+                      type="button"
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-[color:var(--copper-deep)]"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="font-display text-lg font-medium md:text-xl">{item.q}</span>
+                      {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                    </button>
+                    {isOpen && (
+                      <div className="reveal pb-7 pr-10 text-muted-foreground md:max-w-2xl">
+                        {item.a}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
