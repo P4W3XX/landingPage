@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Mail, Phone, Clock, ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 const SCOPE = ["Strona WWW", "E-commerce", "Aplikacja", "Inne"];
 const BUDGETS = ["< 5 000 PLN", "5 000 – 10 000 PLN", "10 000 – 25 000 PLN", "> 25 000 PLN"];
@@ -55,6 +56,8 @@ export function Contact() {
     const data = new FormData(e.currentTarget);
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim() || null;
+    const budget = String(data.get("budget") || "").trim() || null;
     const message = String(data.get("message") || "").trim();
 
     if (name.length < 2 || name.length > 100) return toast.error("Podaj poprawne imię i nazwisko.");
@@ -64,13 +67,57 @@ export function Contact() {
       return toast.error("Opisz projekt w 10–2000 znakach.");
 
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setSubmitting(false);
-    toast.success("Dziękujemy! Odezwiemy się w ciągu kilku godzin.");
-    (e.target as HTMLFormElement).reset();
-    setScope([]);
-    setPostLaunch([]);
-    setCare("free");
+
+    try {
+      const { data: inserted, error: dbError } = await supabase
+        .from("contact_submissions")
+        .insert({
+          name,
+          email,
+          phone,
+          budget,
+          scope: scope.length ? scope : null,
+          care,
+          post_launch: postLaunch.length ? postLaunch : null,
+          message,
+        })
+        .select("id")
+        .single();
+
+      if (dbError) throw dbError;
+
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+      const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+      await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${anonKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: inserted.id,
+          name,
+          email,
+          phone,
+          budget,
+          scope,
+          care,
+          post_launch: postLaunch,
+          message,
+        }),
+      });
+
+      toast.success("Dziękujemy! Odezwiemy się w ciągu kilku godzin.");
+      (e.target as HTMLFormElement).reset();
+      setScope([]);
+      setPostLaunch([]);
+      setCare("free");
+    } catch (err) {
+      console.error(err);
+      toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na e-mail.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

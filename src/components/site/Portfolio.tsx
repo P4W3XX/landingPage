@@ -1,19 +1,32 @@
+import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { supabase } from "@/lib/supabase";
 
-const PROJECTS = [
-  {
-    title: "Studio Marketplace",
-    category: "E-commerce",
-    year: "2026",
-    tags: ["Next.js", "Supabase", "Stripe"],
-    image: "/projects/studiomarketplace.png",
-    link: "https://studiomarketplace.io",
-    swatch: ["#1a1a1a", "#c08457"],
-  },
-];
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  tags: string[];
+  image: string;
+  link: string;
+  swatch: string[];
+}
 
 export function Portfolio() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("projects")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => {
+        if (data) setProjects(data);
+      });
+  }, []);
+
   return (
     <section id="portfolio" className="hairline-b py-24 md:py-32">
       <div className="container-x">
@@ -24,9 +37,9 @@ export function Portfolio() {
           intro="Pracujemy z markami, które rozumieją, że strona to nie koszt — to inwestycja w sposób, w jaki świat ich postrzega."
         />
 
-        <div className="mt-14 justify-center items-center content-center grid grid-cols-1 gap-8 md:grid-cols-2">
-          {PROJECTS.map((p) => (
-            <article key={p.title} className="card-hover group border border-border bg-card">
+        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {projects.map((p) => (
+            <article key={p.id} className="card-hover group border border-border bg-card">
               <div
                 className="relative aspect-[4/3] overflow-hidden border-b border-border"
                 style={{ background: p.swatch[0] }}
@@ -39,20 +52,11 @@ export function Portfolio() {
                     className="flex h-6 items-center gap-1 border-b px-2"
                     style={{ borderColor: p.swatch[1] }}
                   >
-                    <span
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{ background: p.swatch[1] }}
-                    />
-                    <span
-                      className="h-1.5 w-1.5 rounded-full opacity-60"
-                      style={{ background: p.swatch[1] }}
-                    />
-                    <span
-                      className="h-1.5 w-1.5 rounded-full opacity-30"
-                      style={{ background: p.swatch[1] }}
-                    />
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.swatch[1] }} />
+                    <span className="h-1.5 w-1.5 rounded-full opacity-60" style={{ background: p.swatch[1] }} />
+                    <span className="h-1.5 w-1.5 rounded-full opacity-30" style={{ background: p.swatch[1] }} />
                   </div>
-                  <div className=" overflow-hidden h-76">
+                  <div className="overflow-hidden h-76">
                     <img src={p.image} alt={p.title} className="h-auto w-full object-contain" />
                   </div>
                 </div>
@@ -72,17 +76,19 @@ export function Portfolio() {
                     ))}
                   </div>
                 </div>
-                <div className=" flex items-center gap-1">
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-wider"
-                  >
-                    Zobacz projekt
-                  </a>
-                  <ArrowUpRight size={14} />
-                </div>
+                {p.link && p.link !== "#" && (
+                  <div className="flex items-center gap-1">
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-underline inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-wider"
+                    >
+                      Zobacz projekt
+                    </a>
+                    <ArrowUpRight size={14} />
+                  </div>
+                )}
               </div>
             </article>
           ))}

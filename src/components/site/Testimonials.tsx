@@ -1,15 +1,28 @@
+import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { supabase } from "@/lib/supabase";
 
-const QUOTES = [
-  {
-    text: "Najbardziej zaskoczyło mnie tempo. To, co u poprzedniej agencji ciągnęło się miesiącami, tutaj było gotowe w trzy tygodnie — i wyglądało lepiej.",
-    name: "VirusekDevv",
-    role: "Założyciel, Studio MarketPlace",
-  },
-];
+interface Testimonial {
+  id: string;
+  text: string;
+  name: string;
+  role: string;
+}
 
 export function Testimonials() {
+  const [quotes, setQuotes] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("testimonials")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => {
+        if (data) setQuotes(data);
+      });
+  }, []);
+
   return (
     <section id="opinie" className="hairline-b py-24 md:py-32">
       <div className="container-x">
@@ -19,11 +32,11 @@ export function Testimonials() {
           title="To, co o nas mówią, znaczy więcej niż to, co sami napiszemy."
         />
 
-        <div className="mt-14 flex gap-px bg-border border border-border md:grid-cols-3">
-          {QUOTES.map((q) => (
+        <div className="mt-14 grid grid-cols-1 gap-px bg-border border border-border md:grid-cols-3">
+          {quotes.map((q) => (
             <figure
-              key={q.name}
-              className="card-hover flex-1! w-full hover:border-border! border-transparent flex flex-col border justify-between bg-background p-8 md:p-10"
+              key={q.id}
+              className="card-hover flex flex-col border border-transparent hover:border-border! justify-between bg-background p-8 md:p-10"
             >
               <div>
                 <div className="flex gap-0.5 text-[color:var(--copper-deep)]">
