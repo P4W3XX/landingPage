@@ -69,33 +69,33 @@ export function Contact() {
     setSubmitting(true);
 
     try {
-      const { data: inserted, error: dbError } = await supabase
-        .from("contact_submissions")
-        .insert({
-          name,
-          email,
-          phone,
-          budget,
-          scope: scope.length ? scope : null,
-          care,
-          post_launch: postLaunch.length ? postLaunch : null,
-          message,
-        })
-        .select("id")
-        .single();
+      // Client-generated id: RLS allows INSERT for anon but not SELECT (no read-back).
+      const submissionId = crypto.randomUUID();
+
+      const { error: dbError } = await supabase.from("contact_submissions").insert({
+        id: submissionId,
+        name,
+        email,
+        phone,
+        budget,
+        scope: scope.length ? scope : null,
+        care,
+        post_launch: postLaunch.length ? postLaunch : null,
+        message,
+      });
 
       if (dbError) throw dbError;
 
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
       const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-      await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+      const emailRes = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${anonKey}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: inserted.id,
+          id: submissionId,
           name,
           email,
           phone,
@@ -106,6 +106,11 @@ export function Contact() {
           message,
         }),
       });
+
+      if (!emailRes.ok) {
+        const detail = await emailRes.text();
+        console.error("Contact email failed:", emailRes.status, detail);
+      }
 
       toast.success("Dziękujemy! Odezwiemy się w ciągu kilku godzin.");
       (e.target as HTMLFormElement).reset();

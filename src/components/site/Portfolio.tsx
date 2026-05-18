@@ -52,9 +52,18 @@ export function Portfolio() {
                     className="flex h-6 items-center gap-1 border-b px-2"
                     style={{ borderColor: p.swatch[1] }}
                   >
-                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.swatch[1] }} />
-                    <span className="h-1.5 w-1.5 rounded-full opacity-60" style={{ background: p.swatch[1] }} />
-                    <span className="h-1.5 w-1.5 rounded-full opacity-30" style={{ background: p.swatch[1] }} />
+                    <span
+                      className="h-1.5 w-1.5 rounded-full"
+                      style={{ background: p.swatch[1] }}
+                    />
+                    <span
+                      className="h-1.5 w-1.5 rounded-full opacity-60"
+                      style={{ background: p.swatch[1] }}
+                    />
+                    <span
+                      className="h-1.5 w-1.5 rounded-full opacity-30"
+                      style={{ background: p.swatch[1] }}
+                    />
                   </div>
                   <div className="overflow-hidden h-76">
                     <img src={p.image} alt={p.title} className="h-auto w-full object-contain" />

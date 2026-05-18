@@ -32,11 +32,11 @@ export function Testimonials() {
           title="To, co o nas mówią, znaczy więcej niż to, co sami napiszemy."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-px bg-border border border-border md:grid-cols-3">
+        <div className="mt-14 flex gap-px bg-border border border-border md:grid-cols-3">
           {quotes.map((q) => (
             <figure
               key={q.id}
-              className="card-hover flex flex-col border border-transparent hover:border-border! justify-between bg-background p-8 md:p-10"
+              className="card-hover flex flex-1 flex-col border border-transparent hover:border-border! justify-between bg-background p-8 md:p-10"
             >
               <div>
                 <div className="flex gap-0.5 text-[color:var(--copper-deep)]">

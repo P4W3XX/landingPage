@@ -18,6 +18,15 @@ interface ContactPayload {
   message: string;
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
@@ -28,6 +37,10 @@ Deno.serve(async (req: Request) => {
 
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     const TO_EMAIL = Deno.env.get("CONTACT_TO_EMAIL") ?? "pawelsarzynski51@gmail.com";
+    // Resend requires a verified domain for custom addresses. Until studiokresa.pl
+    // is verified, use onboarding@resend.dev (or set RESEND_FROM_EMAIL in secrets).
+    const FROM_EMAIL =
+      Deno.env.get("RESEND_FROM_EMAIL") ?? "Studio Kresa <onboarding@resend.dev>";
 
     if (!RESEND_API_KEY) {
       console.error("RESEND_API_KEY not set");
@@ -44,6 +57,10 @@ Deno.serve(async (req: Request) => {
       paid: "200 zł / mies. — stała opieka",
       later: "Zdecyduję później",
     };
+
+    const name = escapeHtml(payload.name);
+    const email = escapeHtml(payload.email);
+    const message = escapeHtml(payload.message).replace(/\n/g, "<br/>");
 
     const html = `
 <!DOCTYPE html>
@@ -75,33 +92,33 @@ Deno.serve(async (req: Request) => {
     <div class="body">
       <div class="field">
         <div class="label">Imię i nazwisko</div>
-        <div class="value">${payload.name}</div>
+        <div class="value">${name}</div>
       </div>
       <div class="field">
         <div class="label">E-mail</div>
-        <div class="value"><a href="mailto:${payload.email}" style="color:#b87a3a">${payload.email}</a></div>
+        <div class="value"><a href="mailto:${email}" style="color:#b87a3a">${email}</a></div>
       </div>
-      ${payload.phone ? `<div class="field"><div class="label">Telefon</div><div class="value">${payload.phone}</div></div>` : ""}
-      ${payload.budget ? `<div class="field"><div class="label">Budżet</div><div class="value">${payload.budget}</div></div>` : ""}
+      ${payload.phone ? `<div class="field"><div class="label">Telefon</div><div class="value">${escapeHtml(payload.phone)}</div></div>` : ""}
+      ${payload.budget ? `<div class="field"><div class="label">Budżet</div><div class="value">${escapeHtml(payload.budget)}</div></div>` : ""}
       <div class="field">
         <div class="label">Zakres projektu</div>
-        <div class="value">${scopeList}</div>
+        <div class="value">${escapeHtml(scopeList)}</div>
       </div>
       <div class="field">
         <div class="label">Opieka po wdrożeniu</div>
-        <div class="value">${careLabel[payload.care] ?? payload.care}</div>
+        <div class="value">${escapeHtml(careLabel[payload.care] ?? payload.care)}</div>
       </div>
       <div class="field">
         <div class="label">Zmiany po wdrożeniu</div>
-        <div class="value">${postLaunchList}</div>
+        <div class="value">${escapeHtml(postLaunchList)}</div>
       </div>
       <hr class="divider" />
       <div class="field">
         <div class="label">Opis projektu</div>
-        <div class="message-box">${payload.message.replace(/\n/g, "<br/>")}</div>
+        <div class="message-box">${message}</div>
       </div>
     </div>
-    <div class="footer">ID zapytania: ${payload.id}</div>
+    <div class="footer">ID zapytania: ${escapeHtml(payload.id)}</div>
   </div>
 </body>
 </html>`;
@@ -113,7 +130,7 @@ Deno.serve(async (req: Request) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Studio Kresa <noreply@studiokresa.pl>",
+        from: FROM_EMAIL,
         to: [TO_EMAIL],
         reply_to: payload.email,
         subject: `Nowe zapytanie od ${payload.name}`,
@@ -123,11 +140,18 @@ Deno.serve(async (req: Request) => {
 
     if (!res.ok) {
       const errBody = await res.text();
-      console.error("Resend error:", errBody);
-      return new Response(JSON.stringify({ error: "Failed to send email" }), {
-        status: 502,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      console.error("Resend error:", res.status, errBody);
+      return new Response(
+        JSON.stringify({
+          error: "Failed to send email",
+          resend_status: res.status,
+          detail: errBody,
+        }),
+        {
+          status: 502,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
+      );
     }
 
     return new Response(JSON.stringify({ ok: true }), {
