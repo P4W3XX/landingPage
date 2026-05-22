@@ -22,7 +22,7 @@ export function Care() {
     <section id="opieka" className="hairline-b py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
-          index="04"
+          index="03"
           eyebrow="Opieka po wdrożeniu"
           title="Nie zostawiamy Cię z gotowym projektem samego."
           intro="Świadomie nie wdrażamy panelu CMS — to my odpowiadamy za jakość kodu i treści. Wszystkie zmiany po starcie (teksty, grafiki, nowe sekcje, integracje) realizujemy w ramach opieki, według ustalonego SLA."
