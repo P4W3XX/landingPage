@@ -40,7 +40,6 @@ function Index() {
         <Services />
         <WhyUs />
         <Care />
-        <Portfolio />
         <Testimonials />
         <FAQ />
         <Contact />
