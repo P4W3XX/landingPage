@@ -180,7 +180,13 @@ export function Contact() {
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
               {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
                 <div key={name} className="flex items-center gap-1">
-                  <a key={name} href={url} className="link-underline flex items-center gap-1">
+                  <a
+                    key={name}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline flex items-center gap-1"
+                  >
                     {name}
                   </a>
                   <ArrowUpRight size={12} />
