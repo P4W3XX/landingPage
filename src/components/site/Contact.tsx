@@ -5,6 +5,9 @@ import { supabase } from "@/lib/supabase";
 
 const SCOPE = ["Strona WWW", "E-commerce", "Aplikacja", "Inne"];
 const BUDGETS = ["< 5 000 PLN", "5 000 – 10 000 PLN", "10 000 – 25 000 PLN", "> 25 000 PLN"];
+const SOCIAL_LINKS = {
+  GitHub: "https://github.com/P4W3XX",
+};
 const CARE = [
   {
     id: "free",
@@ -175,10 +178,10 @@ export function Contact() {
           <div className="mt-12">
             <div className="label text-background/60">Social</div>
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
-              {["LinkedIn", "Instagram", "Dribbble", "GitHub"].map((s) => (
-                <div key={s} className="flex items-center gap-1">
-                  <a key={s} href="#" className="link-underline flex items-center gap-1">
-                    {s}
+              {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
+                <div key={name} className="flex items-center gap-1">
+                  <a key={name} href={url} className="link-underline flex items-center gap-1">
+                    {name}
                   </a>
                   <ArrowUpRight size={12} />
                 </div>
