@@ -74,9 +74,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Studio Kresa — Strony i aplikacje webowe na zamówienie" },
-      { name: "description", content: "Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe. Czysty kod, świetne SEO, pełne wsparcie." },
+      {
+        name: "description",
+        content:
+          "Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe. Czysty kod, świetne SEO, pełne wsparcie.",
+      },
       { property: "og:title", content: "Studio Kresa — Strony i aplikacje webowe na zamówienie" },
-      { property: "og:description", content: "Butikowa agencja interaktywna. Czysty kod, świetne SEO, pełne wsparcie." },
+      {
+        property: "og:description",
+        content: "Butikowa agencja interaktywna. Czysty kod, świetne SEO, pełne wsparcie.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:site_name", content: "Studio Kresa" },
@@ -84,7 +91,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
     ],
     scripts: [
