@@ -94,6 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://studiokresa.pl/largeImage.png" },
       { property: "og:site_name", content: "Studio Kresa" },
+      { name: "google-site-verification", content: "_5GtwRhGOgI2SaWtmo2Gq2LWeIr70LHIpvmcO3mRe0g" },
     ],
     links: [
       { rel: "canonical", href: "https://studiokresa.pl" },
