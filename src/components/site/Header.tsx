@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLanguage } from "../../lib/language-context";
 
-const NAV = [
-  { href: "#uslugi", label: "Usługi" },
-  { href: "#dlaczego", label: "Dlaczego my" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#opieka", label: "Opieka" },
-  { href: "#opinie", label: "Opinie" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#kontakt", label: "Kontakt" },
+const NAV_KEYS = [
+  { href: "#uslugi", key: "nav.services" },
+  { href: "#dlaczego", key: "nav.whyUs" },
+  { href: "#portfolio", key: "nav.portfolio" },
+  { href: "#opieka", key: "nav.care" },
+  { href: "#opinie", key: "nav.testimonials" },
+  { href: "#faq", key: "nav.faq" },
+  { href: "#kontakt", key: "nav.contact" },
 ];
 
 export function Header() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -39,26 +42,27 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {NAV.map((n) => (
+          {NAV_KEYS.map((n) => (
             <a
               key={n.href}
               href={n.href}
               className="link-underline text-sm text-foreground/80 hover:text-foreground"
             >
-              {n.label}
+              {t(n.key)}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
+          <LanguageToggle />
           <ThemeToggle />
           <a href="#kontakt" className="btn-primary hidden md:inline-flex">
-            Darmowa wycena
+            {t("buttons.freeQuote")}
           </a>
           <button
             type="button"
             className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-border"
-            aria-label={open ? "Zamknij menu" : "Otwórz menu"}
+            aria-label={open ? t("buttons.closeMenu") : t("buttons.openMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -70,14 +74,14 @@ export function Header() {
       {open && (
         <div className="lg:hidden hairline-b bg-background">
           <nav className="container-x flex flex-col py-4">
-            {NAV.map((n) => (
+            {NAV_KEYS.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
                 className="border-b border-border py-3 text-sm text-foreground/90"
               >
-                {n.label}
+                {t(n.key)}
               </a>
             ))}
             <a
@@ -85,7 +89,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="btn-primary mt-4 justify-center"
             >
-              Darmowa wycena
+              {t("buttons.freeQuote")}
             </a>
           </nav>
         </div>

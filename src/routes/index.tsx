@@ -7,8 +7,9 @@ import { WhyUs } from "@/components/site/WhyUs";
 import { Care } from "@/components/site/Care";
 import { Portfolio } from "@/components/site/Portfolio";
 import { Testimonials } from "@/components/site/Testimonials";
-import { FAQ, FAQ_ITEMS } from "@/components/site/FAQ";
+import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
+import { FAQ_ITEMS_PL } from "@/lib/translations";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: FAQ_ITEMS.map((item) => ({
+          mainEntity: FAQ_ITEMS_PL.map((item) => ({
             "@type": "Question",
             name: item.q,
             acceptedAnswer: { "@type": "Answer", text: item.a },

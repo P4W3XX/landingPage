@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { useLanguage } from "../../lib/language-context";
 import { supabase } from "@/lib/supabase";
 
 interface Testimonial {
-  id: string;
+  id?: string;
   text: string;
   name: string;
   role: string;
 }
 
 export function Testimonials() {
+  const { t } = useLanguage();
   const [quotes, setQuotes] = useState<Testimonial[]>([]);
 
   useEffect(() => {
@@ -19,23 +21,26 @@ export function Testimonials() {
       .select("*")
       .order("sort_order", { ascending: true })
       .then(({ data }) => {
-        if (data) setQuotes(data);
+        if (data && data.length > 0) setQuotes(data);
       });
   }, []);
+
+  // Use translations as fallback if no data from Supabase
+  const items = quotes.length > 0 ? quotes : (t("testimonials.items") as Testimonial[]);
 
   return (
     <section id="opinie" className="hairline-b py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
           index="04"
-          eyebrow="Opinie klientów"
-          title="To, co o nas mówią, znaczy więcej niż to, co sami napiszemy."
+          eyebrow={t("testimonials.eyebrow")}
+          title={t("testimonials.title")}
         />
 
         <div className="mt-14 flex gap-px bg-border border border-border md:grid-cols-3">
-          {quotes.map((q) => (
+          {items.map((q) => (
             <figure
-              key={q.id}
+              key={q.id || q.name}
               className="card-hover flex flex-1 flex-col border border-transparent hover:border-border! justify-between bg-background p-8 md:p-10"
             >
               <div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { useLanguage } from "../../lib/language-context";
 import { supabase } from "@/lib/supabase";
 
 interface Project {
@@ -15,6 +16,7 @@ interface Project {
 }
 
 export function Portfolio() {
+  const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -32,9 +34,9 @@ export function Portfolio() {
       <div className="container-x">
         <SectionHeader
           index="03"
-          eyebrow="Ostatnie projekty"
-          title="Wybrane realizacje z ostatnich dwunastu miesięcy."
-          intro="Pracujemy z markami, które rozumieją, że strona to nie koszt — to inwestycja w sposób, w jaki świat ich postrzega."
+          eyebrow={t("portfolio.eyebrow")}
+          title={t("portfolio.title")}
+          intro={t("portfolio.intro")}
         />
 
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">

@@ -1,53 +1,41 @@
 import { useState } from "react";
 import { Mail, Phone, Clock, ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "../../lib/language-context";
 import { supabase } from "@/lib/supabase";
 
-const SCOPE = ["Strona WWW", "E-commerce", "Aplikacja", "Inne"];
-const BUDGETS = ["< 5 000 PLN", "5 000 – 10 000 PLN", "10 000 – 25 000 PLN", "> 25 000 PLN"];
 const SOCIAL_LINKS = {
   GitHub: "https://github.com/P4W3XX",
 };
-const CARE = [
-  {
-    id: "free",
-    title: "1 miesiąc gratis",
-    desc: "Standard po wdrożeniu",
-    price: "0 zł",
-    priceNote: "przez pierwsze 30 dni od oddania projektu",
-    starts: "Naliczanie od dnia wdrożenia",
-  },
-  {
-    id: "paid",
-    title: "200 zł / mies.",
-    desc: "Stała opieka techniczna",
-    price: "200 zł / mies.",
-    priceNote: "netto, bez umowy na czas określony",
-    starts: "Płatność rusza po 30 dniach bezpłatnej opieki",
-  },
-  {
-    id: "later",
-    title: "Zdecyduję później",
-    desc: "Porozmawiajmy o tym",
-    price: "Do ustalenia",
-    priceNote: "doradzimy wariant przy pierwszej rozmowie",
-    starts: "Pierwszy miesiąc po wdrożeniu zawsze gratis",
-  },
-];
-const POST_LAUNCH = [
-  "Edycje treści i grafik",
-  "Nowe sekcje / podstrony",
-  "Integracje (płatności, API, CRM)",
-  "Optymalizacja SEO / wydajność",
-  "Nie wiem jeszcze",
-];
 
 export function Contact() {
+  const { t } = useLanguage();
+  const SCOPE = t("contact.scopes");
+  const BUDGETS = t("contact.budgets");
+  const POST_LAUNCH = t("contact.postLaunch");
+
   const [scope, setScope] = useState<string[]>([]);
   const [postLaunch, setPostLaunch] = useState<string[]>([]);
   const [care, setCare] = useState<string>("free");
-  const selectedCare = CARE.find((c) => c.id === care);
   const [submitting, setSubmitting] = useState(false);
+
+  const careData = t("care");
+  const selectedCare =
+    care === "free"
+      ? {
+          title: careData.free.title,
+          desc: careData.free.description,
+          price: careData.free.price,
+          priceNote: careData.free.priceNote,
+          starts: careData.free.priceNote,
+        }
+      : {
+          title: careData.paid.title,
+          desc: careData.paid.description ?? "",
+          price: careData.paid.price,
+          priceNote: careData.paid.priceNote,
+          starts: careData.paid.priceNote,
+        };
 
   const toggle = (v: string) =>
     setScope((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
@@ -63,11 +51,12 @@ export function Contact() {
     const budget = String(data.get("budget") || "").trim() || null;
     const message = String(data.get("message") || "").trim();
 
-    if (name.length < 2 || name.length > 100) return toast.error("Podaj poprawne imię i nazwisko.");
+    if (name.length < 2 || name.length > 100)
+      return toast.error(t("contact.form.errorNameMessage"));
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
-      return toast.error("Podaj poprawny adres e-mail.");
+      return toast.error(t("contact.form.errorEmailMessage"));
     if (message.length < 10 || message.length > 2000)
-      return toast.error("Opisz projekt w 10–2000 znakach.");
+      return toast.error(t("contact.form.errorMessageMessage"));
 
     setSubmitting(true);
 
@@ -115,14 +104,14 @@ export function Contact() {
         console.error("Contact email failed:", emailRes.status, detail);
       }
 
-      toast.success("Dziękujemy! Odezwiemy się w ciągu kilku godzin.");
+      toast.success(t("contact.form.successMessage"));
       (e.target as HTMLFormElement).reset();
       setScope([]);
       setPostLaunch([]);
       setCare("free");
     } catch (err) {
       console.error(err);
-      toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na e-mail.");
+      toast.error(t("contact.form.errorMessageMessage"));
     } finally {
       setSubmitting(false);
     }
@@ -133,21 +122,18 @@ export function Contact() {
       <div className="container-x grid gap-16 py-24 md:grid-cols-12 md:py-32">
         <div className="md:col-span-5">
           <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-background/60">
-            06 — Kontakt
+            {t("contact.sectionNumber")}
           </div>
           <h2 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
-            Opowiedz nam o swoim projekcie.
+            {t("contact.title")}
           </h2>
-          <p className="mt-6 max-w-md text-background/70">
-            Odpowiadamy w ciągu kilku godzin w dni robocze. Pierwsza rozmowa jest niezobowiązująca —
-            wychodzisz z niej z konkretami, nie z ofertą sprzedażową.
-          </p>
+          <p className="mt-6 max-w-md text-background/70">{t("contact.subtitle")}</p>
 
           <dl className="mt-12 space-y-6">
             <div className="flex items-start gap-4">
               <Mail size={18} className="mt-1 text-[color:var(--copper)]" />
               <div>
-                <dt className="label text-background/60">E-mail</dt>
+                <dt className="label text-background/60">{t("contact.emailLabel")}</dt>
                 <dd className="mt-1 font-display text-lg">
                   <a href="mailto:pawelsarzynski51@gmail.com" className="link-underline">
                     pawelsarzynski51@gmail.com
@@ -158,7 +144,7 @@ export function Contact() {
             <div className="flex items-start gap-4">
               <Phone size={18} className="mt-1 text-[color:var(--copper)]" />
               <div>
-                <dt className="label text-background/60">Telefon</dt>
+                <dt className="label text-background/60">{t("contact.phoneLabel")}</dt>
                 <dd className="mt-1 font-display text-lg">
                   <a href="tel:+48662925283" className="link-underline">
                     +48 662 925 283
@@ -169,14 +155,14 @@ export function Contact() {
             <div className="flex items-start gap-4">
               <Clock size={18} className="mt-1 text-[color:var(--copper)]" />
               <div>
-                <dt className="label text-background/60">Godziny pracy</dt>
-                <dd className="mt-1 text-background/85">Pon — Pt · 07:00 — 21:00</dd>
+                <dt className="label text-background/60">{t("contact.hoursLabel")}</dt>
+                <dd className="mt-1 text-background/85">{t("contact.hoursValue")}</dd>
               </div>
             </div>
           </dl>
 
           <div className="mt-12">
-            <div className="label text-background/60">Social</div>
+            <div className="label text-background/60">{t("contact.socialLabel")}</div>
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
               {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
                 <div key={name} className="flex items-center gap-1">
@@ -198,18 +184,38 @@ export function Contact() {
 
         <form onSubmit={onSubmit} className="md:col-span-7" noValidate>
           <div className="grid gap-6 md:grid-cols-2">
-            <Field label="Imię i nazwisko" name="name" type="text" required maxLength={100} />
-            <Field label="Adres e-mail" name="email" type="email" required maxLength={255} />
-            <Field label="Numer telefonu" name="phone" type="tel" maxLength={32} />
+            <Field
+              label={t("contact.form.nameLabel")}
+              name="name"
+              type="text"
+              placeholder={t("contact.form.namePlaceholder")}
+              required
+              maxLength={100}
+            />
+            <Field
+              label={t("contact.form.emailLabel")}
+              name="email"
+              type="email"
+              placeholder={t("contact.form.emailPlaceholder")}
+              required
+              maxLength={255}
+            />
+            <Field
+              label={t("contact.form.phoneLabel")}
+              name="phone"
+              type="tel"
+              placeholder={t("contact.form.phonePlaceholder")}
+              maxLength={32}
+            />
             <div>
-              <Label>Szacowany budżet</Label>
+              <Label>{t("contact.form.budgetLabel")}</Label>
               <select
                 name="budget"
                 defaultValue=""
                 className="mt-2 w-full appearance-none border-b border-background/30 bg-transparent py-3 text-background outline-none focus:border-[color:var(--copper)]"
               >
                 <option value="" disabled className="bg-foreground">
-                  Wybierz przedział
+                  {t("contact.form.budgetLabel")}
                 </option>
                 {BUDGETS.map((b) => (
                   <option key={b} value={b} className="bg-foreground">
@@ -221,7 +227,7 @@ export function Contact() {
           </div>
 
           <div className="mt-10">
-            <Label>Czego dotyczy projekt?</Label>
+            <Label>{t("contact.form.scopeLabel")}</Label>
             <div className="mt-4 flex flex-wrap gap-2">
               {SCOPE.map((s) => {
                 const active = scope.includes(s);
@@ -245,7 +251,7 @@ export function Contact() {
 
           <div className="mt-10">
             <div className="flex items-baseline justify-between gap-4">
-              <Label>Opieka po wdrożeniu</Label>
+              <Label>{t("contact.form.postLaunchLabel")}</Label>
               <a
                 href="#opieka"
                 className="font-mono text-[11px] uppercase tracking-wider text-[color:var(--copper)] link-underline"
@@ -253,52 +259,21 @@ export function Contact() {
                 Zobacz szczegóły opieki →
               </a>
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              {CARE.map((c) => {
-                const active = care === c.id;
-                return (
-                  <button
-                    key={c.id}
-                    type="button"
-                    onClick={() => setCare(c.id)}
-                    className={`flex flex-col items-start border p-4 text-left transition-colors ${
-                      active
-                        ? "border-[color:var(--copper)] bg-[color:var(--copper)]/10"
-                        : "border-background/30 hover:border-background"
-                    }`}
-                  >
-                    <span
-                      className={`font-display text-base ${active ? "text-[color:var(--copper)]" : "text-background"}`}
-                    >
-                      {c.title}
-                    </span>
-                    <span className="mt-1 font-mono text-[10px] uppercase tracking-wider text-background/60">
-                      {c.desc}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-            <input type="hidden" name="care" value={care} />
-          </div>
-
-          <div className="mt-10">
-            <Label>Czego mogą dotyczyć zmiany po wdrożeniu?</Label>
             <div className="mt-4 flex flex-wrap gap-2">
-              {POST_LAUNCH.map((s) => {
-                const active = postLaunch.includes(s);
+              {POST_LAUNCH.map((p) => {
+                const active = postLaunch.includes(p);
                 return (
                   <button
-                    key={s}
+                    key={p}
                     type="button"
-                    onClick={() => togglePL(s)}
+                    onClick={() => togglePL(p)}
                     className={`border px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors ${
                       active
                         ? "border-[color:var(--copper)] bg-[color:var(--copper)] text-foreground"
                         : "border-background/30 text-background/85 hover:border-background"
                     }`}
                   >
-                    {s}
+                    {p}
                   </button>
                 );
               })}
@@ -306,26 +281,30 @@ export function Contact() {
           </div>
 
           <div className="mt-10">
-            <Label>Krótki opis projektu</Label>
+            <input type="hidden" name="care" value={care} />
+          </div>
+
+          <div className="mt-10">
+            <Label>{t("contact.form.messageLabel")}</Label>
             <textarea
               name="message"
               rows={5}
               required
               minLength={10}
               maxLength={2000}
-              placeholder="Opowiedz nam o celach, terminach i wszystkim, co uznasz za istotne…"
+              placeholder={t("contact.form.messagePlaceholder")}
               className="mt-2 w-full resize-none border-b border-background/30 bg-transparent py-3 text-background placeholder:text-background/40 outline-none focus:border-[color:var(--copper)]"
             />
           </div>
 
           <div className="mt-10 border border-background/20 p-5">
             <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-background/60">
-              Podsumowanie przed wysłaniem
+              {t("contact.summary.title")}
             </div>
             <dl className="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
-                  Wybrana opieka
+                  {t("contact.summary.selectedCare")}
                 </dt>
                 <dd className="mt-1 text-sm text-background">
                   {selectedCare?.title}
@@ -343,11 +322,13 @@ export function Contact() {
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
-                  Zmiany po wdrożeniu
+                  {t("contact.summary.postLaunch")}
                 </dt>
                 <dd className="mt-1 flex flex-wrap gap-1.5">
                   {postLaunch.length === 0 ? (
-                    <span className="text-sm text-background/55">Nie wybrano — porozmawiamy</span>
+                    <span className="text-sm text-background/55">
+                      {t("contact.summary.notSelected")}
+                    </span>
                   ) : (
                     postLaunch.map((p) => (
                       <span
@@ -369,24 +350,24 @@ export function Contact() {
               disabled={submitting}
               className="inline-flex items-center gap-2 border border-background bg-background px-7 py-4 font-mono text-xs uppercase tracking-[0.12em] text-foreground transition-transform duration-200 hover:-translate-x-px hover:-translate-y-px hover:bg-[color:var(--copper)] hover:border-[color:var(--copper)] disabled:opacity-60"
             >
-              {submitting ? "Wysyłanie…" : "Wyślij zapytanie"} <ArrowUpRight size={14} />
+              {submitting ? t("contact.form.submitting") : t("contact.form.submitLabel")}{" "}
+              <ArrowUpRight size={14} />
             </button>
-            <p className="max-w-xs text-xs text-background/55">
-              Wysyłając formularz akceptujesz naszą politykę prywatności. Twoje dane wykorzystamy
-              wyłącznie do kontaktu w sprawie projektu.
-            </p>
+            <p className="max-w-xs text-xs text-background/55">{t("contact.privacy")}</p>
           </div>
         </form>
       </div>
 
       <div className="container-x flex flex-col gap-4 border-t border-background/15 py-8 font-mono text-[11px] uppercase tracking-wider text-background/55 sm:flex-row sm:items-center sm:justify-between">
-        <div>© {new Date().getFullYear()} Studio Kresa — Wszystkie prawa zastrzeżone</div>
+        <div>
+          {t("contact.footer.copyright").replace("{year}", new Date().getFullYear().toString())}
+        </div>
         <div className="flex gap-6">
           <a href="#" className="link-underline">
-            Polityka prywatności
+            {t("contact.footer.privacyLabel")}
           </a>
           <a href="#" className="link-underline">
-            Regulamin
+            {t("contact.footer.termsLabel")}
           </a>
         </div>
       </div>
@@ -408,12 +389,14 @@ function Field({
   type,
   required,
   maxLength,
+  placeholder,
 }: {
   label: string;
   name: string;
   type: string;
   required?: boolean;
   maxLength?: number;
+  placeholder?: string;
 }) {
   return (
     <label className="block">
@@ -426,6 +409,7 @@ function Field({
         type={type}
         required={required}
         maxLength={maxLength}
+        placeholder={placeholder}
         className="mt-2 w-full border-b border-background/30 bg-transparent py-3 text-background placeholder:text-background/40 outline-none focus:border-[color:var(--copper)]"
       />
     </label>

@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import appCss from "../styles.css?url";
+import { LanguageProvider } from "../lib/language-context";
 
 function NotFoundComponent() {
   return (
@@ -95,6 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Studio Kresa" },
     ],
     links: [
+      { rel: "canonical", href: "https://studiokresa.pl" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -115,7 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "Butikowa agencja interaktywna. Projektujemy i programujemy strony WWW, sklepy i aplikacje webowe.",
           email: "pawelsarzynski51@gmail.com",
           telephone: "+48 662 925 283",
-          url: "/",
+          url: "https://studiokresa.pl",
         }),
       },
     ],
@@ -128,11 +130,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
 
+const languageScript = `(function(){try{var l=localStorage.getItem('language');var b=l?l:(navigator.language.toLowerCase().startsWith('pl')?'pl':'en');localStorage.setItem('language',b);}catch(e){}})();`;
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl" suppressHydrationWarning>
       <head>
         <ScriptOnce>{themeScript}</ScriptOnce>
+        <ScriptOnce>{languageScript}</ScriptOnce>
         <HeadContent />
       </head>
       <body>
@@ -147,10 +152,12 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-      <Analytics />
-      <SpeedInsights />
-    </QueryClientProvider>
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+        <Analytics />
+        <SpeedInsights />
+      </QueryClientProvider>
+    </LanguageProvider>
   );
 }

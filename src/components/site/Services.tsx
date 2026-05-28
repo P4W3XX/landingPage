@@ -1,46 +1,15 @@
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
-
-const SERVICES = [
-  {
-    no: "S/01",
-    title: "Strony WWW",
-    desc: "Wizytówki, landing page'e i strony korporacyjne. Szybkie, dopięte pod SEO i konwersję.",
-    bullets: ["Landing page", "Strony firmowe", "Microsite kampanijne"],
-  },
-  {
-    no: "S/02",
-    title: "Sklepy internetowe",
-    desc: "E-commerce na Shopify, WooCommerce lub headless. Integracje, płatności, automatyzacje.",
-    bullets: ["Shopify / WooCommerce", "Headless commerce", "Migracje sklepów"],
-  },
-  {
-    no: "S/03",
-    title: "Aplikacje webowe",
-    desc: "Dedykowane systemy SaaS, panele klienta, dashboardy i wewnętrzne narzędzia.",
-    bullets: ["MVP w 1-2 tygodnie", "Panele i dashboardy", "Integracje API"],
-  },
-  {
-    no: "S/04",
-    title: "Opieka techniczna",
-    desc: "Pierwszy miesiąc po wdrożeniu gratis — poprawki, konsultacje i monitoring. Potem stała opieka za 200 zł miesięcznie.",
-    bullets: [
-      "1 miesiąc bezpłatnej opieki",
-      "Monitoring i aktualizacje",
-      "Backup + priorytetowa reakcja",
-    ],
-  },
-];
+import { useLanguage } from "../../lib/language-context";
 
 export function Services() {
+  const { t } = useLanguage();
+  const SERVICES = t("services.items");
+
   return (
     <section id="uslugi" className="hairline-b py-24 md:py-32">
       <div className="container-x">
-        <SectionHeader
-          index="01"
-          eyebrow="Usługi"
-          title="Wszystko, czego potrzebujesz, by zaistnieć w sieci — pod jednym dachem."
-        />
+        <SectionHeader index="01" eyebrow={t("services.eyebrow")} title={t("services.title")} />
 
         <div className="mt-14 grid grid-cols-1 gap-px bg-border border border-border md:grid-cols-2">
           {SERVICES.map((s) => (
