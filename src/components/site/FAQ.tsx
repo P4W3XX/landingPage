@@ -5,7 +5,7 @@ import { SectionHeader } from "./SectionHeader";
 export const FAQ_ITEMS = [
   {
     q: "Jak długo trwa stworzenie strony?",
-    a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 5 - 7 dni. Rozbudowane strony korporacyjne 2-4 tygodni. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
+    a: "Prosta strona wizytówkowa lub landing page to zazwyczaj 1-2 dni. Rozbudowane strony korporacyjne 1-2 tygodnie. Dla każdego projektu przygotowujemy realny harmonogram już na etapie wyceny.",
   },
   {
     q: "Ile kosztuje wykonanie aplikacji webowej?",

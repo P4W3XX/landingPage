@@ -18,7 +18,7 @@ const SERVICES = [
     no: "S/03",
     title: "Aplikacje webowe",
     desc: "Dedykowane systemy SaaS, panele klienta, dashboardy i wewnętrzne narzędzia.",
-    bullets: ["MVP w 2-4 tygodni", "Panele i dashboardy", "Integracje API"],
+    bullets: ["MVP w 1-2 tygodnie", "Panele i dashboardy", "Integracje API"],
   },
   {
     no: "S/04",
