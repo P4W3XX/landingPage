@@ -160,7 +160,7 @@ export function Contact() {
               <div>
                 <dt className="label text-background/60">Telefon</dt>
                 <dd className="mt-1 font-display text-lg">
-                  <a href="tel:+48500600700" className="link-underline">
+                  <a href="tel:+48662925283" className="link-underline">
                     +48 662 925 283
                   </a>
                 </dd>

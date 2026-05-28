@@ -85,7 +85,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Butikowa agencja interaktywna. Czysty kod, świetne SEO, pełne wsparcie.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://studiokresa.pl/largeImage.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://studiokresa.pl/largeImage.png" },
       { property: "og:site_name", content: "Studio Kresa" },
     ],
     links: [
@@ -107,8 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Studio Kresa",
           description:
             "Butikowa agencja interaktywna. Projektujemy i programujemy strony WWW, sklepy i aplikacje webowe.",
-          email: "hello@studiokresa.pl",
-          telephone: "+48 500 600 700",
+          email: "pawelsarzynski51@gmail.com",
+          telephone: "+48 662 925 283",
           url: "/",
         }),
       },
