@@ -9,6 +9,7 @@ import {
   ScriptOnce,
 } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import appCss from "../styles.css?url";
 
@@ -149,6 +150,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Analytics />
+      <SpeedInsights />
     </QueryClientProvider>
   );
 }
