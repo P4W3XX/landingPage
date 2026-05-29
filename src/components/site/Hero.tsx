@@ -24,7 +24,7 @@ export function Hero() {
             <a href="#kontakt" title="Skontaktuj się z nami" className="btn-primary">
               {t("hero.cta1")} <ArrowUpRight size={16} />
             </a>
-            <a href="#portfolio" title="Zobacz nasze realizacje" className="btn-ghost">
+            <a href="#uslugi" className="btn-ghost">
               {t("hero.cta2")} <ArrowRight size={16} />
             </a>
             <a href="#opieka" title="Dowiedz się więcej o opiece nad stroną" className="btn-ghost">

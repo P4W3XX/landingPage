@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
-Sitemap: https://studiokresa.pl/sitemap.xml
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Host: https://studiokresa.pl
+Sitemap: https://studiokresa.pl/sitemap.xml

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { applyClientSeo } from "./seo";
 import type { Language } from "./translations";
 import { getTranslation } from "./translations";
 
@@ -30,8 +31,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     setLanguageState(initial);
+    applyClientSeo(initial);
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted) applyClientSeo(language);
+  }, [language, mounted]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

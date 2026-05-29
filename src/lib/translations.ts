@@ -61,7 +61,7 @@ export const translations = {
       description:
         "Od prostych wizytówek po zaawansowane sklepy internetowe. Szybka realizacja, najnowsze technologie i wsparcie SEO, na którym możesz polegać.",
       cta1: "Rozpocznij projekt",
-      cta2: "Zobacz nasze realizacje",
+      cta2: "Poznaj nasze usługi",
       cta3: "Opieka po wdrożeniu",
       stats: [
         { k: "20+", v: "Zrealizowanych projektów" },
@@ -345,7 +345,7 @@ export const translations = {
       description:
         "From simple business cards to advanced systems. Fast delivery, cutting-edge technologies, and support you can rely on.",
       cta1: "Start your project",
-      cta2: "See our work",
+      cta2: "Explore our services",
       cta3: "Post-launch support",
       stats: [
         { k: "20+", v: "Projects completed" },

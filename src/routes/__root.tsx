@@ -13,6 +13,8 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "../lib/language-context";
+import { organizationJsonLd, websiteJsonLd } from "../lib/seo";
+import { SITE_OG_IMAGE, SITE_URL } from "../lib/site-config";
 
 function NotFoundComponent() {
   return (
@@ -98,8 +100,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Studio Kresa - Butikowa agencja interaktywna. Projektujemy nowoczesne strony WWW, sklepy internetowe i aplikacje webowe na najwyższym poziomie.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://studiokresa.pl/" },
-      { property: "og:image", content: "https://studiokresa.pl/largeImage.png" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:locale", content: "pl_PL" },
+      { property: "og:locale:alternate", content: "en_US" },
+      { property: "og:image", content: SITE_OG_IMAGE },
       {
         property: "og:image:alt",
         content: "Studio Kresa - Nowoczesne strony WWW i aplikacje webowe",
@@ -116,16 +120,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Studio Kresa - Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy internetowe i aplikacje webowe.",
       },
-      { name: "twitter:image", content: "https://studiokresa.pl/largeImage.png" },
+      { name: "twitter:image", content: SITE_OG_IMAGE },
       { property: "og:site_name", content: "Studio Kresa" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "author", content: "Studio Kresa" },
+      { name: "format-detection", content: "telephone=no" },
       { name: "google-site-verification", content: "_5GtwRhGOgI2SaWtmo2Gq2LWeIr70LHIpvmcO3mRe0g" },
     ],
     links: [
-      { rel: "canonical", href: "https://studiokresa.pl/" },
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "pl", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "en", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "x-default", href: `${SITE_URL}/` },
+      { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "icon", type: "image/png", href: "/favicon.ico" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       {
         rel: "stylesheet",
@@ -135,40 +146,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       {
-        src: "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",
-        async: true,
-      },
-      {
-        children: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');
-        `,
+        type: "application/ld+json",
+        children: JSON.stringify(websiteJsonLd()),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Studio Kresa",
-          url: "https://studiokresa.pl",
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Studio Kresa",
-          url: "https://studiokresa.pl",
-          logo: "https://studiokresa.pl/largeImage.png",
-          description:
-            "Butikowa agencja interaktywna. Projektujemy i programujemy strony WWW, sklepy i aplikacje webowe.",
-          email: "pawelsarzynski51@gmail.com",
-          telephone: "+48 662 925 283",
-          sameAs: ["https://github.com/P4W3XX"],
-        }),
+        children: JSON.stringify(organizationJsonLd()),
       },
     ],
   }),
