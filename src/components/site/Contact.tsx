@@ -256,7 +256,7 @@ export function Contact() {
                 href="#opieka"
                 className="font-mono text-[11px] uppercase tracking-wider text-[color:var(--copper)] link-underline"
               >
-                Zobacz szczegóły opieki →
+                {t("contact.seeDetails")} →
               </a>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -297,53 +297,6 @@ export function Contact() {
             />
           </div>
 
-          <div className="mt-10 border border-background/20 p-5">
-            <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-background/60">
-              {t("contact.summary.title")}
-            </div>
-            <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-              <div>
-                <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
-                  {t("contact.summary.selectedCare")}
-                </dt>
-                <dd className="mt-1 text-sm text-background">
-                  {selectedCare?.title}
-                  <span className="text-background/55"> — {selectedCare?.desc}</span>
-                </dd>
-                <div className="mt-3 flex items-baseline gap-2">
-                  <span className="font-display text-2xl font-semibold text-[color:var(--copper)]">
-                    {selectedCare?.price}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-background/55">
-                    {selectedCare?.priceNote}
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-background/60">{selectedCare?.starts}</p>
-              </div>
-              <div>
-                <dt className="font-mono text-[10px] uppercase tracking-wider text-background/50">
-                  {t("contact.summary.postLaunch")}
-                </dt>
-                <dd className="mt-1 flex flex-wrap gap-1.5">
-                  {postLaunch.length === 0 ? (
-                    <span className="text-sm text-background/55">
-                      {t("contact.summary.notSelected")}
-                    </span>
-                  ) : (
-                    postLaunch.map((p) => (
-                      <span
-                        key={p}
-                        className="border border-[color:var(--copper)]/50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[color:var(--copper)]"
-                      >
-                        {p}
-                      </span>
-                    ))
-                  )}
-                </dd>
-              </div>
-            </dl>
-          </div>
-
           <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="submit"
@@ -358,19 +311,29 @@ export function Contact() {
         </form>
       </div>
 
-      <div className="container-x flex flex-col gap-4 border-t border-background/15 py-8 font-mono text-[11px] uppercase tracking-wider text-background/55 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="container-x flex flex-col gap-4 border-t border-background/15 py-8 font-mono text-[11px] uppercase tracking-wider text-background/55 sm:flex-row sm:items-center sm:justify-between">
         <div>
           {t("contact.footer.copyright").replace("{year}", new Date().getFullYear().toString())}
         </div>
         <div className="flex gap-6">
-          <a href="#" className="link-underline">
+          <a
+            href="/Polityka_Prywatnosci.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline"
+          >
             {t("contact.footer.privacyLabel")}
           </a>
-          <a href="#" className="link-underline">
+          <a
+            href="/Regulamin.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline"
+          >
             {t("contact.footer.termsLabel")}
           </a>
         </div>
-      </div>
+      </footer>
     </section>
   );
 }

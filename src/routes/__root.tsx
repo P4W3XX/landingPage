@@ -75,32 +75,58 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
+      { name: "theme-color", content: "#0a0a0a" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Studio Kresa — Strony i aplikacje webowe na zamówienie" },
+      { title: "Studio Kresa | Agencja interaktywna | Tworzenie stron WWW i aplikacji webowych" },
       {
         name: "description",
         content:
-          "Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe. Czysty kod, świetne SEO, pełne wsparcie.",
+          "Studio Kresa - Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy internetowe i aplikacje webowe. Czysty kod, świetne SEO, wsparcie.",
       },
-      { property: "og:title", content: "Studio Kresa — Strony i aplikacje webowe na zamówienie" },
+      {
+        name: "keywords",
+        content:
+          "agencja interaktywna, tworzenie stron www, sklepy internetowe, aplikacje webowe, react, ui/ux design, seo, web design, web development, studio kresa",
+      },
+      {
+        property: "og:title",
+        content: "Studio Kresa | Agencja interaktywna | Tworzenie stron WWW i aplikacji webowych",
+      },
       {
         property: "og:description",
-        content: "Butikowa agencja interaktywna. Czysty kod, świetne SEO, pełne wsparcie.",
+        content:
+          "Studio Kresa - Butikowa agencja interaktywna. Projektujemy nowoczesne strony WWW, sklepy internetowe i aplikacje webowe na najwyższym poziomie.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://studiokresa.pl/" },
       { property: "og:image", content: "https://studiokresa.pl/largeImage.png" },
+      {
+        property: "og:image:alt",
+        content: "Studio Kresa - Nowoczesne strony WWW i aplikacje webowe",
+      },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Studio Kresa | Agencja interaktywna | Tworzenie stron WWW i aplikacji webowych",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Studio Kresa - Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy internetowe i aplikacje webowe.",
+      },
       { name: "twitter:image", content: "https://studiokresa.pl/largeImage.png" },
       { property: "og:site_name", content: "Studio Kresa" },
       { name: "google-site-verification", content: "_5GtwRhGOgI2SaWtmo2Gq2LWeIr70LHIpvmcO3mRe0g" },
     ],
     links: [
-      { rel: "canonical", href: "https://studiokresa.pl" },
+      { rel: "canonical", href: "https://studiokresa.pl/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
@@ -109,16 +135,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       {
+        src: "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",
+        async: true,
+      },
+      {
+        children: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        `,
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Studio Kresa",
+          url: "https://studiokresa.pl",
+        }),
+      },
+      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Studio Kresa",
+          url: "https://studiokresa.pl",
+          logo: "https://studiokresa.pl/largeImage.png",
           description:
             "Butikowa agencja interaktywna. Projektujemy i programujemy strony WWW, sklepy i aplikacje webowe.",
           email: "pawelsarzynski51@gmail.com",
           telephone: "+48 662 925 283",
-          url: "https://studiokresa.pl",
+          sameAs: ["https://github.com/P4W3XX"],
         }),
       },
     ],
@@ -131,7 +180,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
 
-const languageScript = `(function(){try{var l=localStorage.getItem('language');var b=l?l:(navigator.language.toLowerCase().startsWith('pl')?'pl':'en');localStorage.setItem('language',b);}catch(e){}})();`;
+const languageScript = `(function(){try{var l=localStorage.getItem('language');var b=l?l:((navigator.language||'').toLowerCase().startsWith('en')?'en':'pl');localStorage.setItem('language',b);}catch(e){}})();`;
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (

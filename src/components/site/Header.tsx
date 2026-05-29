@@ -7,7 +7,6 @@ import { useLanguage } from "../../lib/language-context";
 const NAV_KEYS = [
   { href: "#uslugi", key: "nav.services" },
   { href: "#dlaczego", key: "nav.whyUs" },
-  { href: "#portfolio", key: "nav.portfolio" },
   { href: "#opieka", key: "nav.care" },
   { href: "#opinie", key: "nav.testimonials" },
   { href: "#faq", key: "nav.faq" },

@@ -55,10 +55,11 @@ export const translations = {
     },
     hero: {
       subtitle: "Studio projektowo-programistyczne · est. 2026",
-      title: "Tworzymy nowoczesne strony i aplikacje webowe",
+      title: "Tworzymy nowoczesne strony WWW i aplikacje webowe",
       titleHighlight: "na miarę",
+      titleEnd: "Twojego biznesu.",
       description:
-        "Od prostych wizytówek po zaawansowane systemy. Szybka realizacja, najnowsze technologie i wsparcie, na którym możesz polegać.",
+        "Od prostych wizytówek po zaawansowane sklepy internetowe. Szybka realizacja, najnowsze technologie i wsparcie SEO, na którym możesz polegać.",
       cta1: "Rozpocznij projekt",
       cta2: "Zobacz nasze realizacje",
       cta3: "Opieka po wdrożeniu",
@@ -188,7 +189,10 @@ export const translations = {
         title: "Stała opieka techniczna",
         price: "200 zł",
         priceNote: "/ miesiąc, netto",
+        description:
+          "Po pierwszym miesiącu. Bez umowy na czas określony — możesz zrezygnować w dowolnym momencie.",
         label: "P/02 — Care",
+        button: "Zapytaj o opiekę",
         includes: [
           "Edycje treści, grafik i nowych sekcji — robimy je za Ciebie",
           "Aktualizacje stacku, bibliotek i zależności bezpieczeństwa",
@@ -248,6 +252,8 @@ export const translations = {
       phoneLabel: "Telefon",
       hoursLabel: "Godziny pracy",
       hoursValue: "Pon — Pt · 07:00 — 21:00",
+      seeDetails: "ZOBACZ SZCZEGÓŁY OPIEKI",
+
       socialLabel: "Social",
       privacy:
         "Wysyłając formularz akceptujesz naszą politykę prywatności. Twoje dane wykorzystamy wyłącznie do kontaktu w sprawie projektu.",
@@ -335,6 +341,7 @@ export const translations = {
       subtitle: "Design & Development Studio · est. 2026",
       title: "We create modern websites and web applications",
       titleHighlight: "tailored to",
+      titleEnd: "Your business.",
       description:
         "From simple business cards to advanced systems. Fast delivery, cutting-edge technologies, and support you can rely on.",
       cta1: "Start your project",
@@ -462,7 +469,9 @@ export const translations = {
         title: "Ongoing technical support",
         price: "$50",
         priceNote: "/ month",
+        button: "Ask about care",
         label: "P/02 — Care",
+        description: "After the first month. With no fixed-term contract—you can quit at any time.",
         includes: [
           "Content, graphics and new sections edits — we do it for you",
           "Stack, library and security dependency updates",
@@ -523,6 +532,7 @@ export const translations = {
       hoursLabel: "Business hours",
       hoursValue: "Mon – Fri · 07:00 — 21:00",
       socialLabel: "Social",
+      seeDetails: "SEE CARE DETAILS",
       privacy:
         "By submitting the form you accept our privacy policy. We will use your data only to contact you about the project.",
       contactTitle: "Let's talk about your project",

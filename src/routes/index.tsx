@@ -18,6 +18,36 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Studio Kresa",
+          description:
+            "Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe.",
+          url: "https://studiokresa.pl",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Studio Kresa",
+          image: "https://studiokresa.pl/largeImage.png",
+          description:
+            "Butikowa agencja interaktywna specializing in Web Design, UX/UI, and Software Development.",
+          email: "pawelsarzynski51@gmail.com",
+          telephone: "+48 662 925 283",
+          url: "https://studiokresa.pl",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "PL",
+          },
+          priceRange: "$$",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: FAQ_ITEMS_PL.map((item) => ({
             "@type": "Question",

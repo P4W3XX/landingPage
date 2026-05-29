@@ -24,9 +24,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (stored && (stored === "pl" || stored === "en")) {
       initial = stored;
     } else if (typeof window !== "undefined") {
-      const browserLang = navigator.language.toLowerCase();
-      // If browser language is Polish, use Polish; otherwise use English
-      initial = browserLang.startsWith("pl") ? "pl" : "en";
+      const browserLang = navigator.language?.toLowerCase() || "";
+      // Jeśli przeglądarka/bot wyraźnie preferuje angielski, dajemy "en", w przeciwnym razie domyślnie "pl"
+      initial = browserLang.startsWith("en") ? "en" : "pl";
     }
 
     setLanguageState(initial);

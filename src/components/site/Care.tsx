@@ -67,10 +67,7 @@ export function Care() {
                 {t("care.paid.priceNote")}
               </span>
             </div>
-            <p className="mt-4 max-w-md text-sm text-background/70">
-              Po pierwszym miesiącu. Bez umowy na czas określony — możesz zrezygnować w dowolnym
-              momencie.
-            </p>
+            <p className="mt-4 max-w-md text-sm text-background/70">{t("care.paid.description")}</p>
             <ul className="mt-8 space-y-3">
               {t("care.paid.includes").map((b: string) => (
                 <li key={b} className="flex items-start gap-3 text-sm">
@@ -83,7 +80,7 @@ export function Care() {
               href="#kontakt"
               className="mt-10 inline-flex w-fit items-center gap-2 border border-background bg-background px-6 py-3 font-mono text-xs uppercase tracking-[0.12em] text-foreground transition-colors hover:bg-[color:var(--copper)] hover:border-[color:var(--copper)]"
             >
-              Zapytaj o opiekę
+              {t("care.paid.button")}
             </a>
           </article>
         </div>

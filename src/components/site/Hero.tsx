@@ -15,19 +15,19 @@ export function Hero() {
           <h1 className="font-display text-4xl font-semibold leading-[1.04] tracking-tight md:text-6xl lg:text-[5.25rem]">
             {t("hero.title")}
             <span className="text-[color:var(--copper-deep)]"> {t("hero.titleHighlight")} </span>
-            Twojego biznesu.
+            {t("hero.titleEnd")}
           </h1>
           <p className="mt-8 max-w-2xl text-base text-muted-foreground md:text-lg">
             {t("hero.description")}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <a href="#kontakt" className="btn-primary">
+            <a href="#kontakt" title="Skontaktuj się z nami" className="btn-primary">
               {t("hero.cta1")} <ArrowUpRight size={16} />
             </a>
-            <a href="#portfolio" className="btn-ghost">
+            <a href="#portfolio" title="Zobacz nasze realizacje" className="btn-ghost">
               {t("hero.cta2")} <ArrowRight size={16} />
             </a>
-            <a href="#opieka" className="btn-ghost">
+            <a href="#opieka" title="Dowiedz się więcej o opiece nad stroną" className="btn-ghost">
               {t("hero.cta3")} <ArrowRight size={16} />
             </a>
           </div>
