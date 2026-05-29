@@ -7,5 +7,5 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Host: https://studiokresa.pl
-Sitemap: https://studiokresa.pl/sitemap.xml
+Host: https://www.studiokresa.pl
+Sitemap: https://www.studiokresa.pl/sitemap.xml

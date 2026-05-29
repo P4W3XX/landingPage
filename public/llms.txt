@@ -6,10 +6,10 @@ Studio Kresa świadczy usługi z zakresu projektowania UI/UX, kodowania stron i 
 
 ## Pages
 
-- [Strona główna](https://studiokresa.pl/): Usługi, opieka po wdrożeniu, FAQ i kontakt.
+- [Strona główna](https://www.studiokresa.pl/): Usługi, opieka po wdrożeniu, FAQ i kontakt.
 
 ## Contact
 
 - Email: pawelsarzynski51@gmail.com
 - Phone: +48 662 925 283
-- Website: https://studiokresa.pl
+- Website: https://www.studiokresa.pl

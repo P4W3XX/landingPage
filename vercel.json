@@ -2,14 +2,6 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "outputDirectory": "dist/client",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.studiokresa.pl" }],
-      "destination": "https://studiokresa.pl/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
