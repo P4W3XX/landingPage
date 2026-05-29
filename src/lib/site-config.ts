@@ -1,4 +1,3 @@
-/** Canonical production URL (no trailing slash). */
 /** Primary production URL (matches Vercel: www → Production, apex → 307 to www). */
 export const SITE_URL = "https://www.studiokresa.pl";
 
