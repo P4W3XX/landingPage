@@ -34,6 +34,7 @@ export function Header() {
       <div className="container-x flex h-16 items-center justify-between md:h-20">
         <a
           href="#top"
+          title="Studio Kresa — strona główna"
           className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight"
         >
           <span className="inline-block h-2.5 w-2.5 bg-foreground" aria-hidden />

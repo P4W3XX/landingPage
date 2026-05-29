@@ -54,12 +54,12 @@ export const translations = {
       tryAgain: "Spróbuj ponownie",
     },
     hero: {
-      subtitle: "Studio projektowo-programistyczne · est. 2026",
-      title: "Tworzymy nowoczesne strony WWW i aplikacje webowe",
+      subtitle: "Studio Kresa · agencja interaktywna · Polska · est. 2026",
+      title: "Studio Kresa — nowoczesne strony WWW i aplikacje webowe",
       titleHighlight: "na miarę",
       titleEnd: "Twojego biznesu.",
       description:
-        "Od prostych wizytówek po zaawansowane sklepy internetowe. Szybka realizacja, najnowsze technologie i wsparcie SEO, na którym możesz polegać.",
+        "Studio Kresa to butikowa agencja z Polski. Od wizytówek po sklepy internetowe — szybka realizacja, nowoczesny stack i SEO, na którym możesz polegać.",
       cta1: "Rozpocznij projekt",
       cta2: "Poznaj nasze usługi",
       cta3: "Opieka po wdrożeniu",
@@ -300,13 +300,26 @@ export const translations = {
         copyright: "© {year} Studio Kresa — Wszystkie prawa zastrzeżone",
         privacyLabel: "Polityka prywatności",
         termsLabel: "Regulamin",
+        tagsLabel: "Studio Kresa",
+        tags: [
+          "#StudioKresa",
+          "#StronyWWW",
+          "#AplikacjeWebowe",
+          "#AgencjaInteraktywna",
+          "#WebDesign",
+          "#SEO",
+          "#Polska",
+        ],
       },
     },
     meta: {
-      title: "Studio Kresa — Strony i aplikacje webowe na zamówienie",
+      title: "Studio Kresa | Agencja WWW — strony internetowe, sklepy i aplikacje",
       description:
-        "Butikowa agencja interaktywna. Projektujemy i programujemy nowoczesne strony WWW, sklepy i aplikacje webowe. Czysty kod, świetne SEO, pełne wsparcie.",
-      ogDescription: "Butikowa agencja interaktywna. Czysty kod, świetne SEO, pełne wsparcie.",
+        "Studio Kresa to butikowa agencja interaktywna z Polski. Projektujemy i programujemy strony WWW, sklepy internetowe i aplikacje webowe. Skontaktuj się z nami.",
+      ogDescription:
+        "Studio Kresa — butikowa agencja WWW. Strony, sklepy i aplikacje webowe na zamówienie.",
+      keywords:
+        "Studio Kresa, studio kresa, studiokresa, agencja interaktywna, strony www, aplikacje webowe, seo, web design polska",
     },
   },
   en: {
@@ -338,12 +351,12 @@ export const translations = {
       tryAgain: "Try again",
     },
     hero: {
-      subtitle: "Design & Development Studio · est. 2026",
-      title: "We create modern websites and web applications",
+      subtitle: "Studio Kresa · interactive agency · Poland · est. 2026",
+      title: "Studio Kresa — modern websites and web applications",
       titleHighlight: "tailored to",
-      titleEnd: "Your business.",
+      titleEnd: "your business.",
       description:
-        "From simple business cards to advanced systems. Fast delivery, cutting-edge technologies, and support you can rely on.",
+        "Studio Kresa is a boutique agency from Poland. From landing pages to e-commerce — fast delivery, modern stack, and SEO you can rely on.",
       cta1: "Start your project",
       cta2: "Explore our services",
       cta3: "Post-launch support",
@@ -578,13 +591,25 @@ export const translations = {
         copyright: "© {year} Studio Kresa — All rights reserved",
         privacyLabel: "Privacy Policy",
         termsLabel: "Terms & Conditions",
+        tagsLabel: "Studio Kresa",
+        tags: [
+          "#StudioKresa",
+          "#WebDesign",
+          "#WebDevelopment",
+          "#InteractiveAgency",
+          "#SEO",
+          "#Poland",
+        ],
       },
     },
     meta: {
-      title: "Studio Kresa — Web design & development",
+      title: "Studio Kresa | Web agency — websites, stores & applications",
       description:
-        "Boutique interactive agency. We design and develop modern websites, e-commerce stores and web applications. Clean code, great SEO, full support.",
-      ogDescription: "Boutique interactive agency. Clean code, great SEO, full support.",
+        "Studio Kresa is a boutique interactive agency from Poland. We design and develop websites, e-commerce stores and web applications. Get in touch.",
+      ogDescription:
+        "Studio Kresa — boutique web agency. Custom websites, stores and web applications.",
+      keywords:
+        "Studio Kresa, studio kresa, studiokresa, web agency poland, web design, web development, seo",
     },
   },
 };

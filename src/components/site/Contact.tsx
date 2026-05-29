@@ -311,27 +311,42 @@ export function Contact() {
         </form>
       </div>
 
-      <footer className="container-x flex flex-col gap-4 border-t border-background/15 py-8 font-mono text-[11px] uppercase tracking-wider text-background/55 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          {t("contact.footer.copyright").replace("{year}", new Date().getFullYear().toString())}
+      <footer className="container-x border-t border-background/15 py-8">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="font-mono text-[11px] uppercase tracking-wider text-background/55">
+            {t("contact.footer.copyright").replace("{year}", new Date().getFullYear().toString())}
+          </div>
+          <div className="flex gap-6 font-mono text-[11px] uppercase tracking-wider text-background/55">
+            <a
+              href="/Polityka_Prywatnosci.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline"
+            >
+              {t("contact.footer.privacyLabel")}
+            </a>
+            <a
+              href="/Regulamin.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline"
+            >
+              {t("contact.footer.termsLabel")}
+            </a>
+          </div>
         </div>
-        <div className="flex gap-6">
-          <a
-            href="/Polityka_Prywatnosci.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-underline"
-          >
-            {t("contact.footer.privacyLabel")}
-          </a>
-          <a
-            href="/Regulamin.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-underline"
-          >
-            {t("contact.footer.termsLabel")}
-          </a>
+        <div
+          className="mt-6 flex flex-wrap gap-2"
+          aria-label={t("contact.footer.tagsLabel")}
+        >
+          {(t("contact.footer.tags") as string[]).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-sm border border-background/20 px-2.5 py-1 font-mono text-[10px] tracking-wide text-background/50"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </footer>
     </section>

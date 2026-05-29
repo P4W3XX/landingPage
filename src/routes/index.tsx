@@ -9,7 +9,8 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { FAQ_ITEMS_PL } from "@/lib/translations";
-import { SITE_OG_IMAGE, SITE_URL } from "@/lib/site-config";
+import { professionalServiceJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,24 +28,7 @@ export const Route = createFileRoute("/")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          "@id": `${SITE_URL}/#business`,
-          name: "Studio Kresa",
-          image: SITE_OG_IMAGE,
-          description:
-            "Butikowa agencja interaktywna specializing in Web Design, UX/UI, and Software Development.",
-          email: "pawelsarzynski51@gmail.com",
-          telephone: "+48 662 925 283",
-          url: SITE_URL,
-          parentOrganization: { "@id": `${SITE_URL}/#organization` },
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: "PL",
-          },
-          priceRange: "$$",
-        }),
+        children: JSON.stringify(professionalServiceJsonLd()),
       },
       {
         type: "application/ld+json",
